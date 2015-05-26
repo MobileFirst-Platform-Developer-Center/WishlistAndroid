@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
+        <!--android:id="@+id/settings_version"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="136dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--fab:fab_colorNormal="#ffff"-->
+        <!--fab:fab_title="v 1.0"-->
+        <!--fab:fab_icon="@drawable/flippic_logo3"-->
+        <!--fab:fab_colorPressed="#ffe1e1e1"/>-->
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Use custom server"
+        android:textSize="17sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/custom_server_switch"
+        android:layout_gravity="center_horizontal"
+        android:showText="false"
+        android:textColor="#81000000"
+        android:checked="false" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/custom_server_switch"
+        android:hint="custom server url"
+        android:text="http://129.41.233.140:9080/wishlist"
+        android:id="@+id/settings_mfp_url"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/settings_mfp_url"
+        android:hint="custom dataproxy url"
+        android:text="http://129.41.233.140:9080/imfdata"
+        android:id="@+id/settings_dataproxy_url"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/settings_dataproxy_url"
+        android:id="@+id/settings_save"/>
+
+
+</RelativeLayout>

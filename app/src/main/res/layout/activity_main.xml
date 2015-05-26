@@ -1,0 +1,41 @@
+<!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+   <RelativeLayout
+            android:background="#ff106639"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:elevation="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#a9ffffff"
+                android:textSize="30sp"
+                android:text="&#9776;"
+                android:id="@+id/main_navigation"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+               android:layout_marginBottom="10dp"
+               android:layout_centerHorizontal="true"
+               android:textColor="#a9ffffff"
+               android:textSize="40sp"
+               android:text="Wish List"
+               android:id="@+id/main_title"/>
+
+        </RelativeLayout>
+
+        <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

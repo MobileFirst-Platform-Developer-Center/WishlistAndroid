@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#ffc0c0c8"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:id="@+id/wishlistListView"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
+
+    <com.getbase.floatingactionbutton.FloatingActionButton
+    android:id="@+id/wishlist_add"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="20dp"
+    fab:fab_colorNormal="#ff106639"
+    fab:fab_title="add"
+    fab:fab_icon="@drawable/ic_action_new"
+    fab:fab_colorPressed="#ff09421a"/>
+
+</RelativeLayout>

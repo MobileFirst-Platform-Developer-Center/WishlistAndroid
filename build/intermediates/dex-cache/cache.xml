@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/internal_impl-22.1.1-6d8fe663e38304f26ee2e71920b03cb447715b73.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.0/7ff0e000d1e27e356567f56c92af3b8ab912636f/picasso-2.5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7ff0e000d1e27e356567f56c92af3b8ab912636f">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/picasso-2.5.0-ad3af722a23340b308336a52af3b033204d8300f.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-c2dee0c66bd7c47ceb00bdd3a5271c88b3027518.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/3.1.0/3ab2aedaeb4bfa698d0021cb843b2040fbf57fc/timber-3.1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="03ab2aedaeb4bfa698d0021cb843b2040fbf57fc">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/timber-3.1.0-163042348ad3d8dfa71975785487feb82f3c4a9e.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.cloudant/cloudant-sync-datastore-core/0.10.0/e069a129d4ba16881243c07da32296da464a7d28/cloudant-sync-datastore-core-0.10.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e069a129d4ba16881243c07da32296da464a7d28">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/cloudant-sync-datastore-core-0.10.0-6eb34ecd17ca16803b3c742844e652c42203198d.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/src/main/jniLibs/sqlcipher.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="99991d57169949103f6849857e194e29c20f57c9">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/sqlcipher-300effcd5944911d92f0aa14008d8fe3563f6c45.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.afollestad/material-dialogs/0.7.4.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d255a721dd229574dfec5056df3764036c338dbe">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-771d608dd233af1140f715c337638aab83f128f6.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/commons-io-2.4-46a80deac616772115b7b1ce0ba3dfbd3e0bd3dd.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.ibm.mobile.services/cloudant-toolkit-local/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="246f82116240629fe1bf76365ca5656dc3cdb4ef">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-f64f92030bd5db74b065a7d12d330a85e9c85730.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.cloudant/cloudant-sync-datastore-android/0.10.0/8b33d247994c1c13e114f4ffa16943047a589465/cloudant-sync-datastore-android-0.10.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8b33d247994c1c13e114f4ffa16943047a589465">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/cloudant-sync-datastore-android-0.10.0-11b75c31c5a98b40ca7ad54b4fae25f70db1d7d8.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.6/a845a88238be0b5be9d238652c1bc0605ef91f52/android-async-http-1.4.6.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/android-async-http-1.4.6-f207a5db5a85b76dd1f117bc546b25c5d0ad9e14.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/6.0.0/3a10b25b6820e19102e118711afe6a66c0bae123/butterknife-6.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3a10b25b6820e19102e118711afe6a66c0bae123">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/butterknife-6.0.0-75504d90c54bd651e26c5fe394554e344231204e.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.1.1/38d2b3c0c89af5b937fd98c3e558bf6b58c14aa2/jackson-databind-2.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="38d2b3c0c89af5b937fd98c3e558bf6b58c14aa2">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/jackson-databind-2.1.1-df78313427b4cb40641a67f16cc25cc21d215417.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.mikepenz.iconics/library/0.9.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4054f18e4e7d1c148fa71ded4b17348428273e21">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-4cc50e51eb467868e1d084f8001803adee1ce820.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.ibm.mobile.services/imfdata-local/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ba8619b2fd868c0c590b0795949da23ec07798ca">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-b3d45259b543db5d5c01cc9b661d9114764479cb.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/library-2.4.0-239887b2debd80f129a620a8131bdacf17cc61a2.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-09f4a07e203f32965f9e30c6d74e352937056737.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.1/82ad1c5f92f6dcc6291f5c46ebacb975eaa844de/jackson-core-2.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="82ad1c5f92f6dcc6291f5c46ebacb975eaa844de">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/jackson-core-2.1.1-f1299dcaad3e3752770fbff923eacade68503354.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/src/main/jniLibs/uicandroid.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="77f59e8e2008a200535d31a07879e553506c4c82">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/uicandroid-ceacc4101790638247092abba002637ef2118d3f.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e0b0c35d02308b270015a74cada4887e2e49b889">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-3816d174918a161b44d27a2ed043954297d05d93.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.3/e61e3dfc57eaa5c97f9e7061db5608fc7d02d39e/bolts-android-1.1.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e61e3dfc57eaa5c97f9e7061db5608fc7d02d39e">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/bolts-android-1.1.3-0f76037038b5feb56a3f4dad1bb9abe73dd379af.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/src/main/jniLibs/worklight-android.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d36bf035c81674591b86a7ecda2819b6b555312f">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/worklight-android-6624a00149b726d5e41a404a5836fb806a207388.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/support-annotations-22.1.1-8df5020cfa0c40425c0bf8ac1461c6acbbb9af42.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.8.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7a055a4323187e6f6a5e63f01b5a59bff71869a5">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-1ee25ca66b908993e69ced292bb2131e706fbe8f.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/me.alexrs/prefs/1.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0533d46dd9e41f7b407404d8305a6aa7caf1527a">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-7906539bd439e8657a2af619c797d669e0450499.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.mikepenz.materialdrawer/library/2.9.5/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f9c5487b3d9c775225d0f7554f038143e9acdbc4">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-5abb25cfa1d014e00537f04a80bf36d657493be0.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.1.1/b01cc83e745fc4425a3968fafbf8e5b8254a6dd/jackson-annotations-2.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0b01cc83e745fc4425a3968fafbf8e5b8254a6dd">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/jackson-annotations-2.1.1-87c1b167abe5713b9598f892b9f71d4887a71ed7.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/de.greenrobot/eventbus/2.4.0/ddd166d01b3158d1c00576d29f7ed15c030df719/eventbus-2.4.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ddd166d01b3158d1c00576d29f7ed15c030df719">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/eventbus-2.4.0-30bf489ceca0e448a7ca618970779b52f6b59e32.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="11842de6a309c447b3a3d60d73ad637a87c58994">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-82f24299362a9d6b9e67d41c70b7be2e0a0f1883.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/15.0/ed727a8d9f247e2050281cb083f1c77b09dcb5cd/guava-15.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ed727a8d9f247e2050281cb083f1c77b09dcb5cd">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/guava-15.0-dc129b806991ae7a9476f0094893cceeab8071de.jar" />
+    </item>
+    <item
+        jar="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/exploded-aar/net.steamcrafted/load-toast/1.0.6/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f0b653f07052064570b06767e9b4b0b6a29397af">
+        <dex dex="/Users/chethan/Documents/Projects/Android/WishListSample/app/build/intermediates/pre-dexed/arm/debug/classes-864c2deb7892633541a401bedd51e10bd5df7d7b.jar" />
+    </item>
+
+</items>
