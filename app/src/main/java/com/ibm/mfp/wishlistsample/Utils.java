@@ -1,12 +1,20 @@
 package com.ibm.mfp.wishlistsample;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v4.app.FragmentActivity;
 
+import com.cloudant.toolkit.Store;
+import com.ibm.imf.data.DataManager;
 import com.worklight.wlclient.api.WLClient;
+
+import net.steamcrafted.loadtoast.LoadToast;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import bolts.Task;
 import me.alexrs.prefs.lib.Prefs;
 
 /**
@@ -37,5 +45,36 @@ public class Utils implements Constants {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if(ni == null){
+            return false;
+        }
+        return ni.isConnected();
+    }
+
+    public static boolean isCloudantAvailable(Context context) {
+        try {
+            LoadToast toast = new LoadToast(context);
+            toast.setText("Cloudant or local");
+            toast.setTranslationY(400);
+            toast.show();
+            DataManager.initialize(context, Utils.getDataProxyUrl(context));
+            Task<Store> wishListTask = DataManager.getInstance().remoteStore("wishlist");
+            wishListTask.waitForCompletion();
+            if(wishListTask.isFaulted()){
+                toast.error();
+                return false;
+            }else {
+                toast.success();
+                return true;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

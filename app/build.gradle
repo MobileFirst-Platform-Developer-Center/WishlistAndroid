@@ -53,6 +53,8 @@ dependencies {
     // The following lines add the SDKs as a dependency
     compile 'com.ibm.mobile.services:imfdata-local:1.0.0'
     compile 'com.ibm.mobile.services:cloudant-toolkit-local:1.0.0'
+
+    compile 'com.google.code.gson:gson:2.3'
     // The following is needed by imfdata-local
     //    compile(name: 'worklight-android', ext: 'jar')
     compile files('src/main/jniLibs/sqlcipher.jar')

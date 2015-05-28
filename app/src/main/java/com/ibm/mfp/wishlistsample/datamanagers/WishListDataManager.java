@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.toolkit.Store;
 import com.cloudant.toolkit.query.CloudantQuery;
 import com.cloudant.toolkit.query.Query;

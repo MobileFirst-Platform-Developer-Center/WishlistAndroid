@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.cloudant.toolkit.mapper.DataObject;
 import com.cloudant.toolkit.mapper.Metadata;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,13 @@ public class Item implements DataObject {
         this.productId = productId;
     }
 
-
+    public Item(JsonObject json){
+        this.title = json.get("title").toString();
+        this.store = json.get("store").toString();
+        this.price =Integer.parseInt(json.get("price").toString());
+        this.imgURL = json.get("image").toString();
+        this.productId = json.get("productId").toString();
+    }
 
     @Override
     public Metadata getMetadata() {
@@ -89,21 +96,8 @@ public class Item implements DataObject {
         this.productId = productId;
     }
 
-    public Item(JSONObject json){
-        try {
-            this.title = json.getString("title");
-            this.store = json.getString("store");
-            this.price =json.getInt("price");
-            this.imgURL = json.getString("image");
-            this.productId = json.getString("productId");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
     public JSONObject getItemJsonObject(){
-        String json = "{title: '"+getTitle()+"', store : '"+getStore()+"', price :'"
-                +getPrice()+"', image :'"+getImgURL()+"', productId :'"+getProductId()+"'}";
+        String json = getItemJsonAsString();
 
         try {
             return new JSONObject(json);
@@ -112,5 +106,10 @@ public class Item implements DataObject {
         }
 
         return null;
+    }
+
+    public String getItemJsonAsString(){
+        return "{title: '"+getTitle()+"', store : '"+getStore()+"', price :'"
+                +getPrice()+"', image :'"+getImgURL()+"', productId :'"+getProductId()+"'}";
     }
 }

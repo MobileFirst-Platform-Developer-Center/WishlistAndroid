@@ -5,20 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-    <!--<com.getbase.floatingactionbutton.FloatingActionButton-->
-        <!--android:id="@+id/settings_version"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="136dp"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginRight="20dp"-->
-        <!--fab:fab_colorNormal="#ffff"-->
-        <!--fab:fab_title="v 1.0"-->
-        <!--fab:fab_icon="@drawable/flippic_logo3"-->
-        <!--fab:fab_colorPressed="#ffe1e1e1"/>-->
-
     <Switch
         android:layout_width="match_parent"
         android:layout_height="60dp"

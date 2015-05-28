@@ -41,6 +41,8 @@ import timber.log.Timber;
  */
 public class WishListFragment extends Fragment {
 
+    Boolean usingCloudant = false;
+
     @InjectView(R.id.wishlistListView)
     ListView wishlistListView;
 
@@ -75,14 +77,22 @@ public class WishListFragment extends Fragment {
         //Register challenge handler
         WLClient.getInstance().registerChallengeHandler(new WishListChallengeHandler(getActivity()));
 
-//        WishListDataManager.getInstance(getActivity()).setUpDB();
-        JsonStoreDataManager.getInstance(getActivity()).setUpJsonStore();
-//        Item item = new Item("iPad air 2","Houston",600,"/images/iPadAir2.jpg","00001");
-//        JsonStoreDataManager.getInstance(getActivity()).addItem(item);
-//
-//        Item item2 = new Item("Xbox 360","Raleigh",240,"/images/xbox360jpg","00002");
-//        JsonStoreDataManager.getInstance(getActivity()).addItem(item2);
-
+        if (Utils.isOnline(getActivity())){
+            if(Utils.isCloudantAvailable(getActivity())){
+                WishListDataManager.getInstance(getActivity()).setUpDB();
+                usingCloudant = true;
+            }else{
+                usingCloudant = false;
+                JsonStoreDataManager.getInstance(getActivity()).setUpLocalStore();
+                JsonStoreDataManager.getInstance(getActivity()).getAllItemsFromAdapter();
+            }
+        }else{
+            usingCloudant = false;
+            JsonStoreDataManager.getInstance(getActivity()).setUpLocalStore();
+            JsonStoreDataManager.getInstance(getActivity()).getLocalListItems();
+        }
+        //enable the add new item button
+        add.setEnabled(true);
     }
 
     @OnClick(R.id.wishlist_add)
@@ -105,8 +115,11 @@ public class WishListFragment extends Fragment {
                                         Integer.parseInt(itemPrice.getText().toString()),
                                         "/images/gs6edge.png",
                                         "00006");
-                                WishListDataManager.getInstance(getActivity().getApplicationContext()).addItem(item);
-
+                                if (usingCloudant) {
+                                    WishListDataManager.getInstance(getActivity()).addItem(item);
+                                } else {
+                                    JsonStoreDataManager.getInstance(getActivity()).addLocalItem(item);
+                                }
                             }
 
                             @Override

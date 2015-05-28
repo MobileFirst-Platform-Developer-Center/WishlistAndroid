@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ibm.mfp.wishlistsample.datamanagers.JsonStoreDataManager;
 import com.ibm.mfp.wishlistsample.fragments.CatalogFragment;
 import com.ibm.mfp.wishlistsample.fragments.HomeFragment;
 import com.ibm.mfp.wishlistsample.fragments.SettingsFragment;
@@ -66,35 +68,30 @@ public class MainActivity extends AppCompatActivity {
                         switch (position){
                             case 0:
                                 //home
-//                                navigation.setText("HOME");
                                 title.setText("WISHLIST");
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.container, HomeFragment.newInstance(drawer))
                                         .commit();
                                 break;
                             case 1:
-//                                navigation.setText("WISH LIST");
                                 title.setText("Catalog");
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.container, CatalogFragment.newInstance())
                                         .commit();
                                 break;
                             case 2:
-//                                navigation.setText("WISH LIST");
                                 title.setText("Wish List");
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.container, WishListFragment.newInstance())
                                         .commit();
                                 break;
                             case 3:
-//                                navigation.setText("WISH LIST");
                                 title.setText("Settings");
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.container, SettingsFragment.newInstance())
                                         .commit();
                                 break;
                             case 4:
-//                                navigation.setText("HOME");
                                 title.setText("Wish List");
                                 //logout and show home
                                 fragmentManager.beginTransaction()
@@ -123,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 //                drawer.openDrawer();
 
         setUpPush();
+//        JsonStoreDataManager.getInstance(this).setUpLocalStore();
 
     }
 
