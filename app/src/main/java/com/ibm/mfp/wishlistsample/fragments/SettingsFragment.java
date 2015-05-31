@@ -82,7 +82,7 @@ public class SettingsFragment extends Fragment implements Constants{
                     clickSave();
                 }else{
                     try {
-                        WLClient.getInstance().setServerUrl(new URL("http://129.41.233.140:9080/wishlist"));
+                        WLClient.getInstance().setServerUrl(new URL("http://129.41.226.173:9080/wishlist"));
                         Prefs.with(getActivity().getApplicationContext()).save(USE_CUSTOM_SERVER,isChecked);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();

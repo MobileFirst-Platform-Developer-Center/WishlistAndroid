@@ -108,6 +108,8 @@ public class JsonStoreDataManager {
                 }else{
                     getLocalListItems();
                 }
+            }else{
+                getLocalListItems();
             }
 
         } catch (InterruptedException e) {
@@ -116,7 +118,7 @@ public class JsonStoreDataManager {
     }
 
     public void getLocalListItems() {
-        toast.setText("Fetching wishlist");
+        toast.setText("Fetching local list");
         toast.setTranslationY(400);
         toast.show();
         if (localStore == null){
@@ -182,6 +184,12 @@ public class JsonStoreDataManager {
                         List <IndexField> list = new ArrayList<IndexField>();
                         list.add(new IndexField("price"));
                         localStore.createIndexWithDataType("Item", list);
+
+                        if (Utils.isOnline(context)){
+                            getAllItemsFromAdapter();
+                        }else{
+                            getLocalListItems();
+                        }
                  }
                     return null;
                 }
@@ -264,9 +272,10 @@ public class JsonStoreDataManager {
             getAllItemRequest.send(new WLResponseListener() {
                 @Override
                 public void onSuccess(WLResponse wlResponse) {
+                    dismissToast(true);
                     allItemListFromAdapter.clear();
                     String response = wlResponse.getResponseText();
-                    Timber.d("Successfully got data from LocalStoreAdapter\n"+response);
+                    Timber.d("****Successfully got data from LocalStoreAdapter\n"+response);
                     JsonParser parser = new JsonParser();
                     JsonArray responseArray = parser.parse(response).getAsJsonArray();
                     for(JsonElement obj:responseArray){
@@ -279,7 +288,8 @@ public class JsonStoreDataManager {
 
                 @Override
                 public void onFailure(WLFailResponse wlFailResponse) {
-                    Timber.d("An error occurred while fetching all the items from LocalStoreAdapter"
+                    dismissToast(false);
+                    Timber.d("****An error occurred while fetching all the items from LocalStore Adapter "
                             +wlFailResponse.getErrorMsg());
                 }
             });

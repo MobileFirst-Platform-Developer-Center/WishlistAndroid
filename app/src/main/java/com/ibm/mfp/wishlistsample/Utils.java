@@ -7,15 +7,26 @@ import android.support.v4.app.FragmentActivity;
 
 import com.cloudant.toolkit.Store;
 import com.ibm.imf.data.DataManager;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.squareup.picasso.OkHttpDownloader;
 import com.worklight.wlclient.api.WLClient;
 
 import net.steamcrafted.loadtoast.LoadToast;
 
+import org.apache.http.Header;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 
 import bolts.Task;
+import de.greenrobot.event.EventBus;
 import me.alexrs.prefs.lib.Prefs;
+import timber.log.Timber;
 
 /**
  * Created by chethan on 20/05/15.
@@ -36,11 +47,11 @@ public class Utils implements Constants {
         try {
             if (Prefs.with(context).getBoolean(USE_CUSTOM_SERVER,false)){
                 if (Prefs.with(context).getString(MFP_DATAPROXY_URL,"").equalsIgnoreCase(""))
-                    return new URL("http://129.41.233.140:9080/imfdata");
+                    return new URL(getCloudantUrlFromProperties(context));
                 else
                     return new URL(Prefs.with(context).getString(MFP_DATAPROXY_URL,""));
             }
-            return new URL("http://129.41.233.140:9080/imfdata");
+            return new URL(getCloudantUrlFromProperties(context));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -56,25 +67,34 @@ public class Utils implements Constants {
         return ni.isConnected();
     }
 
-    public static boolean isCloudantAvailable(Context context) {
+    public static void pingCloudant(Context context) {
+            URL url = getDataProxyUrl(context);
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(url.toString(), new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    Timber.d("is cloudant available - success  status code : "+statusCode + "Response "+responseBody.toString());
+                    EventBus.getDefault().post(true);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    Timber.d("is cloudant available - failure  status code : "+statusCode);
+                    EventBus.getDefault().post(false);
+                }
+            });
+    }
+
+    private static String getCloudantUrlFromProperties(Context context){
         try {
-            LoadToast toast = new LoadToast(context);
-            toast.setText("Cloudant or local");
-            toast.setTranslationY(400);
-            toast.show();
-            DataManager.initialize(context, Utils.getDataProxyUrl(context));
-            Task<Store> wishListTask = DataManager.getInstance().remoteStore("wishlist");
-            wishListTask.waitForCompletion();
-            if(wishListTask.isFaulted()){
-                toast.error();
-                return false;
-            }else {
-                toast.success();
-                return true;
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            Properties prop = new Properties();
+            InputStream itemData = context.getAssets().open("wlclient.properties");
+            prop.load(itemData);
+            return prop.getProperty("wlServerProtocol")+"://"+prop.getProperty("wlServerHost")
+                    +":"+prop.getProperty("wlServerPort")+"/"+prop.getProperty("dataproxy");
+        }catch (IOException ioe){
+            ioe.printStackTrace();
         }
-        return false;
+        return "http://129.41.226.173:9080/imfdata2";
     }
 }

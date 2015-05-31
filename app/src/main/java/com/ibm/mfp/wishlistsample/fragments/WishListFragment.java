@@ -1,21 +1,17 @@
 package com.ibm.mfp.wishlistsample.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.cloudant.toolkit.Store;
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.ibm.imf.data.DataManager;
 import com.ibm.mfp.wishlistsample.CatalogListViewAdapter;
 import com.ibm.mfp.wishlistsample.R;
 import com.ibm.mfp.wishlistsample.Utils;
@@ -26,14 +22,12 @@ import com.ibm.mfp.wishlistsample.models.Item;
 import com.squareup.picasso.Picasso;
 import com.worklight.wlclient.api.WLClient;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import net.steamcrafted.loadtoast.LoadToast;
 
-import bolts.Continuation;
-import bolts.Task;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 import timber.log.Timber;
 
 /**
@@ -42,6 +36,7 @@ import timber.log.Timber;
 public class WishListFragment extends Fragment {
 
     Boolean usingCloudant = false;
+    LoadToast toast;
 
     @InjectView(R.id.wishlistListView)
     ListView wishlistListView;
@@ -68,6 +63,9 @@ public class WishListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Timber.d("WishList Fragment onViewCreated");
+        EventBus.getDefault().register(this);
+        toast = new LoadToast(getActivity());
+        toast.setTranslationY(400);
 
         wishlistListView.setAdapter(new CatalogListViewAdapter(null));
 
@@ -78,21 +76,14 @@ public class WishListFragment extends Fragment {
         WLClient.getInstance().registerChallengeHandler(new WishListChallengeHandler(getActivity()));
 
         if (Utils.isOnline(getActivity())){
-            if(Utils.isCloudantAvailable(getActivity())){
-                WishListDataManager.getInstance(getActivity()).setUpDB();
-                usingCloudant = true;
-            }else{
-                usingCloudant = false;
-                JsonStoreDataManager.getInstance(getActivity()).setUpLocalStore();
-                JsonStoreDataManager.getInstance(getActivity()).getAllItemsFromAdapter();
-            }
+            Utils.pingCloudant(getActivity());
+            toast.setText("Cloudant or local");
+            toast.show();
         }else{
             usingCloudant = false;
             JsonStoreDataManager.getInstance(getActivity()).setUpLocalStore();
-            JsonStoreDataManager.getInstance(getActivity()).getLocalListItems();
         }
-        //enable the add new item button
-        add.setEnabled(true);
+
     }
 
     @OnClick(R.id.wishlist_add)
@@ -138,5 +129,26 @@ public class WishListFragment extends Fragment {
                 newItemDialog.show();
             }
         });
+    }
+
+    public void onEventMainThread(Boolean isCloudantAvailable){
+        Timber.d("is cloudant available "+isCloudantAvailable);
+        if (isCloudantAvailable){
+            toast.success();
+            WishListDataManager.getInstance(getActivity()).setUpDB();
+            usingCloudant = true;
+        }else{
+            toast.error();
+            usingCloudant = false;
+            JsonStoreDataManager.getInstance(getActivity()).setUpLocalStore();
+        }
+        //enable the add new item button
+        add.setEnabled(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

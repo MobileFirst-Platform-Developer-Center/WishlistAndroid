@@ -37,7 +37,7 @@ public class Item implements DataObject {
     public Item(JsonObject json){
         this.title = json.get("title").toString();
         this.store = json.get("store").toString();
-        this.price =Integer.parseInt(json.get("price").toString());
+        this.price =Integer.parseInt(String.valueOf(json.get("price")));
         this.imgURL = json.get("image").toString();
         this.productId = json.get("productId").toString();
     }
