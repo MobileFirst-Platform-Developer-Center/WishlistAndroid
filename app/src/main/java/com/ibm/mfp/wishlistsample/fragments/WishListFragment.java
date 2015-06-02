@@ -141,6 +141,7 @@ public class WishListFragment extends Fragment {
             toast.error();
             usingCloudant = false;
             JsonStoreDataManager.getInstance(getActivity()).setUpLocalStore();
+//            JsonStoreDataManager.getInstance(getActivity()).getLocalListItems();
         }
         //enable the add new item button
         add.setEnabled(true);

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/AppTheme"
     android:layout_marginLeft="6dp"
     android:layout_marginRight="6dp"
     android:layout_height="120dp"

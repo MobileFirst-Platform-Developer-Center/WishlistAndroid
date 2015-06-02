@@ -27,7 +27,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@id/custom_server_switch"
-        android:hint="custom server url"
+        android:hint="http://host:port/context"
         android:text="http://129.41.233.140:9080/wishlist"
         android:id="@+id/settings_mfp_url"/>
 
@@ -38,7 +38,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@id/settings_mfp_url"
-        android:hint="custom dataproxy url"
+        android:hint="http://host:port/imfdata"
         android:text="http://129.41.233.140:9080/imfdata"
         android:id="@+id/settings_dataproxy_url"/>
 

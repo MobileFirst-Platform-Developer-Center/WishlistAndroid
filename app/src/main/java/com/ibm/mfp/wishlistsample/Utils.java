@@ -1,6 +1,7 @@
 package com.ibm.mfp.wishlistsample;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
@@ -85,16 +86,36 @@ public class Utils implements Constants {
             });
     }
 
-    private static String getCloudantUrlFromProperties(Context context){
+    public static String getCloudantUrlFromProperties(Context context){
         try {
             Properties prop = new Properties();
             InputStream itemData = context.getAssets().open("wlclient.properties");
             prop.load(itemData);
+            itemData.close();
             return prop.getProperty("wlServerProtocol")+"://"+prop.getProperty("wlServerHost")
                     +":"+prop.getProperty("wlServerPort")+"/"+prop.getProperty("dataproxy");
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
-        return "http://129.41.226.173:9080/imfdata2";
+        return "http://129.41.226.173:9080/imfdata";
     }
+
+    public static String getMFPUrlFromProperties(Context context){
+        try {
+            Properties prop = new Properties();
+            InputStream itemData = context.getAssets().open("wlclient.properties");
+            prop.load(itemData);
+            itemData.close();
+            return prop.getProperty("wlServerProtocol")+"://"+prop.getProperty("wlServerHost")
+                    +":"+prop.getProperty("wlServerPort")+prop.getProperty("wlServerContext");
+        }catch (IOException ioe){
+            ioe.printStackTrace();
+        }
+        return "http://129.41.226.173:9080/MobileFirstStarter";
+    }
+
+    public static Typeface getRegularTypeface(Context context) {
+        return Typeface.createFromAsset(context.getApplicationContext().getAssets(), "fonts/Lato-Regular.ttf");
+    }
+
 }

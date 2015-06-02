@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
 import bolts.Continuation;
 import bolts.Task;
 import de.greenrobot.event.EventBus;
@@ -78,6 +80,7 @@ public class JsonStoreDataManager {
     private void syncAdapterDataToLocalStore() {
         try {
             Boolean wasThereAnError = false;
+            getLocalListItems();
             //delete all local data
             for (Item localItem : allItemListFromLocalStore){
                 Task<String> deleteTask = localStore.delete(localItem);
@@ -118,54 +121,60 @@ public class JsonStoreDataManager {
     }
 
     public void getLocalListItems() {
-        toast.setText("Fetching local list");
-        toast.setTranslationY(400);
-        toast.show();
+//        toast.setText("Fetching local list");
+//        toast.setTranslationY(400);
+//        toast.show();
+
         if (localStore == null){
             setUpLocalStore();
         }else{
-            localStore.setMapper(new DataObjectMapper());
-            localStore.getMapper().setDataTypeForClassName("Item", Item.class.getCanonicalName());
-            Map<String, Object> queryJSON = new HashMap<String, Object>();
-            Map<String, Object> selector = new HashMap<String, Object>();
-            Map<String, Object> equalityOp = new HashMap<String, Object>();
-            equalityOp.put("$eq", "Item");
-            selector.put("@datatype", equalityOp);
-            queryJSON.put("selector", selector);
+            try {
+                Map<String, Object> queryJSON = new HashMap<String, Object>();
+                Map<String, Object> selector = new HashMap<String, Object>();
+                Map<String, Object> equalityOp = new HashMap<String, Object>();
+                equalityOp.put("$eq", "Item");
+                selector.put("@datatype", equalityOp);
+                queryJSON.put("selector", selector);
 
-            CloudantQuery query = new CloudantQuery(queryJSON);
+                CloudantQuery query = new CloudantQuery(queryJSON);
 
-            localStore.performQuery(query).continueWith(new Continuation<List, Object>() {
-                @Override
-                public Object then(Task<List> task) throws Exception {
-                    if (task.isFaulted()){
-                        dismissToast(false);
-                        Timber.d("An error occurred while retrieving all the items from local store" +
-                                task.getError().getLocalizedMessage());
-                        task.getError().printStackTrace();
-                    }else{
-                        dismissToast(true);
-                        allItemListFromLocalStore.clear();
-                        List itemsList = task.getResult();
-                        for (Object item:itemsList){
-                            if (item instanceof Item){
-                                Timber.d("The returned object  from List is Item");
-                                ((Item) item).prettyPrint();
-                                allItemListFromLocalStore.add((Item) item);
+                Task localFetchTask = localStore.performQuery(query);
+                localFetchTask.waitForCompletion();
+                localFetchTask.continueWith(new Continuation<List, Object>() {
+                    @Override
+                    public Object then(Task<List> task) throws Exception {
+                        if (task.isFaulted()) {
+                            dismissToast(false);
+                            Timber.d("An error occurred while retrieving all the items from local store" +
+                                    task.getError().getLocalizedMessage());
+                            task.getError().printStackTrace();
+                        } else {
+                            dismissToast(true);
+                            allItemListFromLocalStore.clear();
+                            List itemsList = task.getResult();
+                            for (Object item : itemsList) {
+                                if (item instanceof Item) {
+                                    Timber.d("The returned object  from List is Item");
+                                    ((Item) item).prettyPrint();
+                                    allItemListFromLocalStore.add((Item) item);
+                                }
                             }
+                            Timber.d("Item list sending from jsonstore "+allItemListFromLocalStore.toString());
+                            EventBus.getDefault().post(allItemListFromLocalStore);
                         }
-
-                        EventBus.getDefault().post(allItemListFromLocalStore);
+                        return null;
                     }
-                    return null;
-                }
-            });
+                });
+            }catch (InterruptedException ie){
+                ie.printStackTrace();
+            }
         }
     }
 
     public void setUpLocalStore(){
         try {
             DataManager.initialize(context, new URL("http:localhost:9080/data"));
+
             final Task<Store> localstoreTask = DataManager.getInstance().localStore("ItemStore");
             localstoreTask.waitForCompletion();//important
 
@@ -180,7 +189,7 @@ public class JsonStoreDataManager {
                         localStore = localstoreTask.getResult();
                         localStore.setMapper(new DataObjectMapper());
                         localStore.getMapper().setDataTypeForClassName("Item", Item.class.getCanonicalName());
-                        localStore.deleteIndexWithDataType("Item");
+//                        localStore.deleteIndexWithDataType("Item");
                         List <IndexField> list = new ArrayList<IndexField>();
                         list.add(new IndexField("price"));
                         localStore.createIndexWithDataType("Item", list);
@@ -215,6 +224,7 @@ public class JsonStoreDataManager {
                     getLocalListItems();
                     dismissToast(true);
                     Timber.d("After successfully adding item to local wishlist");
+                    syncLocalDataToAdapter();
                 }
                 return null;
             }

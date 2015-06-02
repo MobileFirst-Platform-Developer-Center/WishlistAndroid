@@ -1,5 +1,6 @@
 package com.ibm.mfp.wishlistsample.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.ibm.mfp.wishlistsample.CatalogListViewAdapter;
 import com.ibm.mfp.wishlistsample.R;
@@ -17,8 +19,10 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.worklight.wlclient.api.WLClient;
 
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import butterknife.OnClick;
 import timber.log.Timber;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by chethan on 21/05/15.

@@ -11,6 +11,7 @@
         android:textSize="30sp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        fontPath="fonts/Lato-Regular.ttf"
         android:id="@+id/catalog" />
 
     <TextView
@@ -20,6 +21,7 @@
         android:textSize="30sp"
         android:text="WishList"
         android:layout_alignParentRight="true"
+        fontPath="fonts/Lato-Regular.ttf"
         android:id="@+id/wishlist"
         android:layout_centerVertical="true" />
 </RelativeLayout>

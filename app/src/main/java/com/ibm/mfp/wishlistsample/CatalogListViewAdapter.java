@@ -78,13 +78,13 @@ public class CatalogListViewAdapter extends BaseAdapter{
     }
 
     //Event bus receives the catalog items list data in this method
-    public   void onEventMainThread(ArrayList<Item> itemList){
-        Timber.d("Got catalog item list in Catalog Adapter " + itemList.size());
-        for(Item item : itemList){
+    public   void onEventMainThread(ArrayList<Item> list){
+        Timber.d("Got catalog item list in Catalog Adapter " + list.size());
+        for(Item item : list){
             item.prettyPrint();
         }
-        this.itemList.clear();
-        this.itemList = itemList;
+//        this.itemList.clear();
+        this.itemList = list;
         this.notifyDataSetChanged();
     }
 

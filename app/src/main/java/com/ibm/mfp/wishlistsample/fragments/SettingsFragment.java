@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ibm.mfp.wishlistsample.CatalogListViewAdapter;
 import com.ibm.mfp.wishlistsample.Constants;
 import com.ibm.mfp.wishlistsample.R;
+import com.ibm.mfp.wishlistsample.Utils;
 import com.ibm.mfp.wishlistsample.datamanagers.WishListChallengeHandler;
 import com.ibm.mfp.wishlistsample.datamanagers.WishListDataManager;
 import com.worklight.wlclient.api.WLClient;
@@ -82,7 +83,7 @@ public class SettingsFragment extends Fragment implements Constants{
                     clickSave();
                 }else{
                     try {
-                        WLClient.getInstance().setServerUrl(new URL("http://129.41.226.173:9080/wishlist"));
+                        WLClient.getInstance().setServerUrl(new URL(Utils.getMFPUrlFromProperties(getActivity())));
                         Prefs.with(getActivity().getApplicationContext()).save(USE_CUSTOM_SERVER,isChecked);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();

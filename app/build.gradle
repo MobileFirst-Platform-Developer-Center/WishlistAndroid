@@ -50,6 +50,7 @@ dependencies {
     }
     compile 'com.android.support:cardview-v7:22.0.0'
     compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
     // The following lines add the SDKs as a dependency
     compile 'com.ibm.mobile.services:imfdata-local:1.0.0'
     compile 'com.ibm.mobile.services:cloudant-toolkit-local:1.0.0'

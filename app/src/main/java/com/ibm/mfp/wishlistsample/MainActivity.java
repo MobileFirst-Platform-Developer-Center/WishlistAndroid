@@ -1,5 +1,6 @@
 package com.ibm.mfp.wishlistsample;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import timber.log.Timber;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.inject(this);
         Timber.plant(new Timber.DebugTree());
+        title.setTypeface(Utils.getRegularTypeface(this));
 
        drawer  = new Drawer()
                 .withActivity(this)
@@ -52,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 .withTranslucentStatusBar(true)
                 .withDisplayBelowToolbar(true)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Home"),
+                        new PrimaryDrawerItem().withName("Home").withTypeface(Utils.getRegularTypeface(this)),
 
-                        new PrimaryDrawerItem().withName("Catalog"),
-                        new PrimaryDrawerItem().withName("Wish List"),
+                        new PrimaryDrawerItem().withName("Catalog").withTypeface(Utils.getRegularTypeface(this)),
+                        new PrimaryDrawerItem().withName("Wish List").withTypeface(Utils.getRegularTypeface(this)),
 
-                        new PrimaryDrawerItem().withName("Settings"),
-                        new PrimaryDrawerItem().withName("Logout")
+                        new PrimaryDrawerItem().withName("Settings").withTypeface(Utils.getRegularTypeface(this)),
+                        new PrimaryDrawerItem().withName("Logout").withTypeface(Utils.getRegularTypeface(this))
 
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -122,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
         setUpPush();
 //        JsonStoreDataManager.getInstance(this).setUpLocalStore();
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private void toast(final String msg){
