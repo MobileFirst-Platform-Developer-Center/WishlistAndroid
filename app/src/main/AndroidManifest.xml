@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.worklight.androidnativepush.AndroidNativePush.NOTIFICATION" />
+                <action android:name="com.ibm.mfp.wishlistsample.MainActivity.NOTIFICATION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -47,12 +47,12 @@
         <receiver android:name="com.worklight.wlclient.push.WLBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="com.worklight.androidnativepush" />
+                <category android:name="com.ibm.mfp.wishlistsample" />
             </intent-filter>
 
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="com.worklight.androidnativepush" />
+                <category android:name="com.ibm.mfp.wishlistsample" />
             </intent-filter>
         </receiver>
     </application>

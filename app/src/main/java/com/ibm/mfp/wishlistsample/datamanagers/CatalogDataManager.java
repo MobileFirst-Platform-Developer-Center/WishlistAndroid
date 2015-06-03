@@ -55,8 +55,6 @@ public class CatalogDataManager implements Constants{
 
     public ArrayList<Item> getCatalogData(){
         final ArrayList<Item> itemArrayList = new ArrayList<Item>();
-//        String adapterName = "Product";
-//        String procedureName = "";
         String adapterName = "CatalogAdapter";
         String procedureName = "getCatalog";
 
@@ -89,7 +87,7 @@ public class CatalogDataManager implements Constants{
                                     responseItem.getString(TITLE),
                                     responseItem.getString(STORE),
                                     responseItem.getInt(PRICE),
-                                    responseItem.getString(PHOTO),
+                                    "http://boxstore-catalog.mybluemix.net/MFPSampleWebService"+responseItem.getString(PHOTO),
                                     responseItem.getString(PRODUCT_ID)
                             ));
                        }

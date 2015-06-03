@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 WLClient.getInstance().getPush().subscribeTag("wishlist", null, new WLResponseListener() {
                     @Override
                     public void onSuccess(WLResponse wlResponse) {
-                        Timber.d("Successfully subscribed to push tag manger");
+                        Timber.d("Successfully subscribed to push tag wishlist");
                     }
 
                     @Override
@@ -179,6 +179,27 @@ public class MainActivity extends AppCompatActivity {
                 Timber.d("An error occured while connecting to server");
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (WLClient.getInstance().getPush() != null)
+            WLClient.getInstance().getPush().setForeground(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (WLClient.getInstance().getPush() != null)
+            WLClient.getInstance().getPush().setForeground(false);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (WLClient.getInstance().getPush() != null)
+            WLClient.getInstance().getPush().unregisterReceivers();
     }
 
 }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -46,6 +47,7 @@ public class WishListFragment extends Fragment {
 
     EditText itemName = null, storeName = null, itemPrice = null;
     ImageView itemImage = null;
+    String placeholderImageUrlString = "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/gs6edge.png";
 
     public static WishListFragment newInstance()
     {
@@ -104,7 +106,7 @@ public class WishListFragment extends Fragment {
                                 Item item = new Item(itemName.getText().toString(),
                                         storeName.getText().toString(),
                                         Integer.parseInt(itemPrice.getText().toString()),
-                                        "/images/gs6edge.png",
+                                        placeholderImageUrlString,
                                         "00006");
                                 if (usingCloudant) {
                                     WishListDataManager.getInstance(getActivity()).addItem(item);
@@ -120,12 +122,19 @@ public class WishListFragment extends Fragment {
                         })
                         .build();
 
+
                 itemName = (EditText) newItemDialog.getCustomView().findViewById(R.id.new_item_name);
                 storeName = (EditText) newItemDialog.getCustomView().findViewById(R.id.new_item_store);
                 itemPrice = (EditText) newItemDialog.getCustomView().findViewById(R.id.new_item_price);
                 itemImage = (ImageView) newItemDialog.getCustomView().findViewById(R.id.new_item_image);
-                Picasso.with(getActivity()).load("http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/gs6edge.png")
-                        .into(itemImage);
+                itemImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        placeholderImageUrlString = getDummyImage();
+                        Picasso.with(getActivity()).load(placeholderImageUrlString).into(itemImage);
+                    }
+                });
+                Picasso.with(getActivity()).load(placeholderImageUrlString).into(itemImage);
                 newItemDialog.show();
             }
         });
@@ -151,5 +160,25 @@ public class WishListFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    private String getDummyImage(){
+        String imageString;
+        int val = ((int) (Math.random()*10)) % 6;
+        Timber.d("Random val"+val);
+        switch (val){
+            case 1:
+                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/iPadAir2.jpg";
+            case 2:
+                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/gs6edge.png";
+            case 3:
+                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/samsung65tv.png";
+            case 4:
+                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/macbook_pro.png";
+            default:
+                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/gs6edge.png";
+
+        }
+
     }
 }
