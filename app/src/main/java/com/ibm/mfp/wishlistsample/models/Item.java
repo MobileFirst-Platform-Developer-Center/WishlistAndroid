@@ -30,16 +30,16 @@ public class Item implements DataObject {
         this.title = title;
         this.store = store;
         this.price = price;
-        this.imgURL = "http://boxstore-catalog.mybluemix.net/MFPSampleWebService"+imageUrl;
+        this.imgURL = imageUrl;
         this.productId = productId;
     }
 
     public Item(JsonObject json){
-        this.title = json.get("title").toString();
-        this.store = json.get("store").toString();
+        this.title = json.get("title").toString().replace("\"","");
+        this.store = json.get("store").toString().replace("\"", "");
         this.price =Integer.parseInt(String.valueOf(json.get("price")));
-        this.imgURL = json.get("image").toString();
-        this.productId = json.get("productId").toString();
+        this.imgURL = json.get("image").toString().replace("\"", "");
+        this.productId = json.get("productId").toString().replace("\"","");
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Item implements DataObject {
     }
 
     public void setImgURL(String imgURL) {
-        this.imgURL ="http://boxstore-catalog.mybluemix.net/MFPSampleWebService"+ imgURL;
+        this.imgURL = imgURL;
     }
 
     public String getProductId() {
@@ -109,7 +109,7 @@ public class Item implements DataObject {
     }
 
     public String getItemJsonAsString(){
-        return "{title: '"+getTitle()+"', store : '"+getStore()+"', price :'"
-                +getPrice()+"', image :'"+getImgURL()+"', productId :'"+getProductId()+"'}";
+        return "{title: '"+getTitle()+"', store : '"+getStore()+"', price :"
+                +getPrice()+", image :'"+getImgURL()+"', productId :'"+getProductId()+"'}";
     }
 }

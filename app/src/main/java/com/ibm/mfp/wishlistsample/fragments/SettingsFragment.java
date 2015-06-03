@@ -103,6 +103,7 @@ public class SettingsFragment extends Fragment implements Constants{
             Prefs.with(getActivity().getApplicationContext()).save(MFP_DATAPROXY_URL,dataproxyURL.getText().toString());
             try {
                 WLClient.getInstance().setServerUrl(new URL(mfpURL.getText().toString()));
+                Toast.makeText(getActivity(),"Successfully saved the custom server properties",Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }

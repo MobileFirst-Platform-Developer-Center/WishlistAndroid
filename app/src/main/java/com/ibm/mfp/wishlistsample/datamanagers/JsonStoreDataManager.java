@@ -211,7 +211,7 @@ public class JsonStoreDataManager {
 
     }
 
-    public void addLocalItem(Item item){
+    public void addLocalItem(final Item item){
         toast.setText("Adding item");
         toast.show();
         localStore.save(item).continueWith(new Continuation<Object, Object>() {
@@ -224,23 +224,24 @@ public class JsonStoreDataManager {
                     getLocalListItems();
                     dismissToast(true);
                     Timber.d("After successfully adding item to local wishlist");
-                    syncLocalDataToAdapter();
+                    syncLocalDataToAdapter(item);
                 }
                 return null;
             }
         });
     }
 
-    public void syncLocalDataToAdapter(){
-        JsonArray itemsJsonData = getJsonOfLocalData();
+    public void syncLocalDataToAdapter(Item item){
+
         toast.setText("Pushing data");
         toast.show();
         WLResourceRequest pushDataToAdapterRequest = null;
         try{
             pushDataToAdapterRequest = new WLResourceRequest(
-                    new URI("adapters/"+adapterName+"/"+procedureName),WLResourceRequest.GET );
-            pushDataToAdapterRequest.setQueryParameter("allitemsjson",itemsJsonData.toString());
-            pushDataToAdapterRequest.send(new WLResponseListener() {
+                    new URI("adapters/"+adapterName+"/"+"localstore/addItem"),WLResourceRequest.PUT );
+            pushDataToAdapterRequest.setQueryParameter("allitemsjson", item.getItemJsonAsString());
+            Timber.d("item json to be pushed to adapter" + item.getItemJsonAsString());
+            pushDataToAdapterRequest.send(item.getItemJsonAsString(),new WLResponseListener() {
                 @Override
                 public void onSuccess(WLResponse wlResponse) {
                     dismissToast(true);

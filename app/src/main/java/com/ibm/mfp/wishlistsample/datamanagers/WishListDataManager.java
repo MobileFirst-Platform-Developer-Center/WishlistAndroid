@@ -60,6 +60,7 @@ public class WishListDataManager {
             toast.setTranslationY(400);
             toast.show();
             dataProxyURL  = Utils.getDataProxyUrl(context);
+            Timber.d("Data proxy url :: "+dataProxyURL);
 
 
             DataManager.initialize(context, dataProxyURL);

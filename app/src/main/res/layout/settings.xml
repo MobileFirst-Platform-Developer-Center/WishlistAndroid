@@ -18,7 +18,7 @@
         android:layout_gravity="center_horizontal"
         android:showText="false"
         android:textColor="#81000000"
-        android:checked="false" />
+        android:checked="true" />
 
     <EditText
         android:layout_width="match_parent"

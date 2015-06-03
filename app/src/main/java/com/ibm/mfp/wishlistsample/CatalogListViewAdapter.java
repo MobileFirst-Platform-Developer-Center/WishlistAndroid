@@ -73,7 +73,7 @@ public class CatalogListViewAdapter extends BaseAdapter{
         viewHolder.title.setText(itemList.get(position).getTitle());
         viewHolder.store.setText(itemList.get(position).getStore());
         viewHolder.price.setText("$ "+String.valueOf(itemList.get(position).getPrice()));
-        Picasso.with(parent.getContext()).load(itemList.get(position).getImgURL()).into(viewHolder.image);
+        Picasso.with(parent.getContext()).load("http://boxstore-catalog.mybluemix.net/MFPSampleWebService"+itemList.get(position).getImgURL()).into(viewHolder.image);
         return convertView;
     }
 

@@ -92,8 +92,9 @@ public class Utils implements Constants {
             InputStream itemData = context.getAssets().open("wlclient.properties");
             prop.load(itemData);
             itemData.close();
-            return prop.getProperty("wlServerProtocol")+"://"+prop.getProperty("wlServerHost")
+            String urlString = prop.getProperty("wlServerProtocol")+"://"+prop.getProperty("wlServerHost")
                     +":"+prop.getProperty("wlServerPort")+"/"+prop.getProperty("dataproxy");
+            return urlString.substring(0,urlString.length()-2);
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
@@ -106,8 +107,9 @@ public class Utils implements Constants {
             InputStream itemData = context.getAssets().open("wlclient.properties");
             prop.load(itemData);
             itemData.close();
-            return prop.getProperty("wlServerProtocol")+"://"+prop.getProperty("wlServerHost")
+            String urlString = prop.getProperty("wlServerProtocol")+"://"+prop.getProperty("wlServerHost")
                     +":"+prop.getProperty("wlServerPort")+prop.getProperty("wlServerContext");
+            return urlString.substring(0,urlString.length()-2);
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
