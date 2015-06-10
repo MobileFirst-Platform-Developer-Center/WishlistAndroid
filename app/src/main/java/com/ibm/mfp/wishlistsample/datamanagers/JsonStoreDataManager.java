@@ -239,7 +239,6 @@ public class JsonStoreDataManager {
         try{
             pushDataToAdapterRequest = new WLResourceRequest(
                     new URI("adapters/"+adapterName+"/"+"localstore/addItem"),WLResourceRequest.PUT );
-            pushDataToAdapterRequest.setQueryParameter("allitemsjson", item.getItemJsonAsString());
             Timber.d("item json to be pushed to adapter" + item.getItemJsonAsString());
             pushDataToAdapterRequest.send(item.getItemJsonAsString(),new WLResponseListener() {
                 @Override

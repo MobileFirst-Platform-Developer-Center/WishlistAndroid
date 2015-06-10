@@ -18,18 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    productFlavors{
-        x86{
-            ndk{
-                abiFilter "x86"
-            }
-        }
-        arm{
-            ndk{
-                abiFilters "armeabi-v7a" , "armeabi"
-            }
-        }
-    }
+
     dexOptions {
         javaMaxHeapSize "4g"
     }

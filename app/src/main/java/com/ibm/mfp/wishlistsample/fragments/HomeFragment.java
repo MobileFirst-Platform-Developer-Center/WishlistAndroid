@@ -29,11 +29,17 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 public class HomeFragment extends Fragment {
 
-    Drawer.Result drawer;
+    private Drawer.Result drawer;
 
     public static HomeFragment newInstance(Drawer.Result drawer)
     {
         return new HomeFragment(drawer);
+
+//        return new HomeFragment();
+    }
+
+    private void setDrawer(Drawer.Result draw){
+        this.drawer = draw;
     }
 
     public HomeFragment(){

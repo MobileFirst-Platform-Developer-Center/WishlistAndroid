@@ -17,6 +17,7 @@
         android:id="@+id/custom_server_switch"
         android:layout_gravity="center_horizontal"
         android:showText="false"
+        fontPath="fonts/Lato-Regular.ttf"
         android:textColor="#81000000"
         android:checked="true" />
 
@@ -27,6 +28,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@id/custom_server_switch"
+        fontPath="fonts/Lato-Regular.ttf"
         android:hint="http://host:port/context"
         android:text="http://129.41.233.140:9080/wishlist"
         android:id="@+id/settings_mfp_url"/>
@@ -38,6 +40,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
         android:layout_below="@id/settings_mfp_url"
+        fontPath="fonts/Lato-Regular.ttf"
         android:hint="http://host:port/imfdata"
         android:text="http://129.41.233.140:9080/imfdata"
         android:id="@+id/settings_dataproxy_url"/>
@@ -48,6 +51,7 @@
         android:text="SAVE"
         android:layout_marginTop="40dp"
         android:layout_alignParentRight="true"
+        fontPath="fonts/Lato-Regular.ttf"
         android:layout_marginRight="20dp"
         android:layout_below="@id/settings_dataproxy_url"
         android:id="@+id/settings_save"/>
