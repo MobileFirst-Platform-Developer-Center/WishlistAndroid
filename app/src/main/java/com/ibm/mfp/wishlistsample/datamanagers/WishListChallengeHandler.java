@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.ibm.mfp.wishlistsample.R;
+import com.worklight.common.Logger;
 import com.worklight.wlclient.api.WLFailResponse;
 import com.worklight.wlclient.api.WLResponse;
 import com.worklight.wlclient.api.challengehandler.ChallengeHandler;
@@ -18,7 +19,6 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 
-import timber.log.Timber;
 
 /**
  * Created by chethan on 16/05/15.
@@ -53,12 +53,12 @@ public class WishListChallengeHandler extends ChallengeHandler {
 
     @Override
     public boolean isCustomResponse(WLResponse wlResponse) {
-        Timber.d("is Custom Response " + wlResponse.getResponseJSON());
+        Logger.getInstance("WishListChallengeHandler").debug("is Custom Response " + wlResponse.getResponseJSON());
         if (wlResponse != null && wlResponse.getResponseJSON() != null){
             try {
                 if (wlResponse.getResponseJSON().has("authStatus")){
                     String authRequired = wlResponse.getResponseJSON().getString("authStatus");
-                    Timber.d("auth status is : "+authRequired.equalsIgnoreCase("required"));
+                    Logger.getInstance("WishListChallengeHandler").debug("auth status is : " + authRequired.equalsIgnoreCase("required"));
                     return authRequired.equalsIgnoreCase("required");
                 }
             } catch (JSONException e) {
@@ -103,7 +103,7 @@ public class WishListChallengeHandler extends ChallengeHandler {
 
     @Override
     public void onSuccess(WLResponse wlResponse) {
-        Timber.d("Successfully logged in");
+        Logger.getInstance("WishListChallengeHandler").debug("Successfully logged in");
         //TODO dismiss login form
         submitSuccess(wlResponse);
     }
@@ -111,6 +111,7 @@ public class WishListChallengeHandler extends ChallengeHandler {
     @Override
     public void onFailure(WLFailResponse wlFailResponse) {
         //TODO show alert of invalid username and password
+        Logger.getInstance("WishListChallengeHandler").debug("Failed to logged in");
         submitFailure(wlFailResponse);
     }
 }

@@ -21,7 +21,7 @@ import com.worklight.wlclient.api.WLClient;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import timber.log.Timber;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**

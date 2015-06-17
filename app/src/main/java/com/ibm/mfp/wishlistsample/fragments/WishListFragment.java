@@ -3,6 +3,7 @@ package com.ibm.mfp.wishlistsample.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
-import timber.log.Timber;
 
 /**
  * Created by chethan on 17/05/15.
@@ -64,7 +64,7 @@ public class WishListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Timber.d("WishList Fragment onViewCreated");
+        Log.d("WishListFragment","WishList Fragment onViewCreated");
         EventBus.getDefault().register(this);
         toast = new LoadToast(getActivity());
         toast.setTranslationY(400);
@@ -141,7 +141,7 @@ public class WishListFragment extends Fragment {
     }
 
     public void onEventMainThread(Boolean isCloudantAvailable){
-        Timber.d("is cloudant available "+isCloudantAvailable);
+        Log.d("WishListFragment","is cloudant available "+isCloudantAvailable);
         if (isCloudantAvailable){
             toast.success();
             WishListDataManager.getInstance(getActivity()).setUpDB();
@@ -165,7 +165,7 @@ public class WishListFragment extends Fragment {
     private String getDummyImage(){
         String imageString;
         int val = ((int) (Math.random()*10)) % 6;
-        Timber.d("Random val"+val);
+        Log.d("WishListFragment","Random val" + val);
         switch (val){
             case 1:
                 return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/iPadAir2.jpg";

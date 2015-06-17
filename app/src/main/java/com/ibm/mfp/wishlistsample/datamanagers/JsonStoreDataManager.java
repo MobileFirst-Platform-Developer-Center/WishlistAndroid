@@ -2,20 +2,17 @@ package com.ibm.mfp.wishlistsample.datamanagers;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
 import com.cloudant.toolkit.IndexField;
 import com.cloudant.toolkit.Store;
 import com.cloudant.toolkit.mapper.DataObjectMapper;
 import com.cloudant.toolkit.query.CloudantQuery;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.ibm.imf.data.DataManager;
 import com.ibm.mfp.wishlistsample.Utils;
 import com.ibm.mfp.wishlistsample.models.Item;
+import com.worklight.common.Logger;
 import com.worklight.wlclient.api.WLFailResponse;
 import com.worklight.wlclient.api.WLResourceRequest;
 import com.worklight.wlclient.api.WLResponse;
@@ -29,12 +26,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
 import bolts.Continuation;
 import bolts.Task;
 import de.greenrobot.event.EventBus;
-import timber.log.Timber;
 
 /**
  * Created by chethan on 25/05/15.
@@ -86,7 +80,7 @@ public class JsonStoreDataManager {
                 Task<String> deleteTask = localStore.delete(localItem);
                 deleteTask.waitForCompletion();
                 if (deleteTask.isFaulted()) {
-                    Timber.d("There was an error while deleting data from local store "
+                    Logger.getInstance("JsonStoreDataManager").debug("There was an error while deleting data from local store "
                             + deleteTask.getError().getLocalizedMessage());
                     wasThereAnError = true;
                 }
@@ -97,14 +91,14 @@ public class JsonStoreDataManager {
                 Task<Object> addTask = localStore.save(remoteData);
                 addTask.waitForCompletion();
                 if (addTask.isFaulted()){
-                    Timber.d("There was an error while saving data from adapter  to local store"
-                        + addTask.getError().getLocalizedMessage());
+                    Logger.getInstance("JsonStoreDataManager").debug("There was an error while saving data from adapter  to local store"
+                            + addTask.getError().getLocalizedMessage());
                     wasThereAnError = true;
                 }
             }
 
             if (wasThereAnError){
-                Timber.d("There was an error while trying to clear local data and push adapter data to local store. We will need to retry");
+                Logger.getInstance("JsonStoreDataManager").debug("There was an error while trying to clear local data and push adapter data to local store. We will need to retry");
                 // if online, retry  else work on local copy
                 if(Utils.isOnline(context)){
                     getAllItemsFromAdapter();
@@ -145,7 +139,7 @@ public class JsonStoreDataManager {
                     public Object then(Task<List> task) throws Exception {
                         if (task.isFaulted()) {
                             dismissToast(false);
-                            Timber.d("An error occurred while retrieving all the items from local store" +
+                            Logger.getInstance("JsonStoreDataManager").debug("An error occurred while retrieving all the items from local store" +
                                     task.getError().getLocalizedMessage());
                             task.getError().printStackTrace();
                         } else {
@@ -154,12 +148,12 @@ public class JsonStoreDataManager {
                             List itemsList = task.getResult();
                             for (Object item : itemsList) {
                                 if (item instanceof Item) {
-                                    Timber.d("The returned object  from List is Item");
+                                    Logger.getInstance("JsonStoreDataManager").debug("The returned object  from List is Item");
                                     ((Item) item).prettyPrint();
                                     allItemListFromLocalStore.add((Item) item);
                                 }
                             }
-                            Timber.d("Item list sending from jsonstore "+allItemListFromLocalStore.toString());
+                            Logger.getInstance("JsonStoreDataManager").debug("Item list sending from jsonstore " + allItemListFromLocalStore.toString());
                             EventBus.getDefault().post(allItemListFromLocalStore);
                         }
                         return null;
@@ -182,10 +176,10 @@ public class JsonStoreDataManager {
                 @Override
                 public Object then(Task<Store> task) throws Exception {
                     if (task.isFaulted()) {
-                        Timber.d("An error occurred while trying to set up a local cloudant store"
-                                +task.getError().getLocalizedMessage());
+                        Logger.getInstance("JsonStoreDataManager").debug("An error occurred while trying to set up a local cloudant store"
+                                + task.getError().getLocalizedMessage());
                     } else {
-                        Timber.d("local store created");
+                        Logger.getInstance("JsonStoreDataManager").debug("local store created");
                         localStore = localstoreTask.getResult();
                         localStore.setMapper(new DataObjectMapper());
                         localStore.getMapper().setDataTypeForClassName("Item", Item.class.getCanonicalName());
@@ -219,11 +213,11 @@ public class JsonStoreDataManager {
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()) {
                     dismissToast(false);
-                    Timber.d("An error occurred while saving item to local store");
+                    Logger.getInstance("JsonStoreDataManager").debug("An error occurred while saving item to local store");
                 } else {
                     getLocalListItems();
                     dismissToast(true);
-                    Timber.d("After successfully adding item to local wishlist");
+                    Logger.getInstance("JsonStoreDataManager").debug("After successfully adding item to local wishlist");
                     syncLocalDataToAdapter(item);
                 }
                 return null;
@@ -239,18 +233,18 @@ public class JsonStoreDataManager {
         try{
             pushDataToAdapterRequest = new WLResourceRequest(
                     new URI("adapters/"+adapterName+"/"+"localstore/addItem"),WLResourceRequest.PUT );
-            Timber.d("item json to be pushed to adapter" + item.getItemJsonAsString());
+            Logger.getInstance("JsonStoreDataManager").debug("item json to be pushed to adapter" + item.getItemJsonAsString());
             pushDataToAdapterRequest.send(item.getItemJsonAsString(),new WLResponseListener() {
                 @Override
                 public void onSuccess(WLResponse wlResponse) {
                     dismissToast(true);
-                    Timber.d("successfully pushed local data to adapter");
+                    Logger.getInstance("JsonStoreDataManager").debug("successfully pushed local data to adapter");
                 }
 
                 @Override
                 public void onFailure(WLFailResponse wlFailResponse) {
                     dismissToast(false);
-                    Timber.d("An error occurred while pushing the local store data to adapter");
+                    Logger.getInstance("JsonStoreDataManager").debug("An error occurred while pushing the local store data to adapter");
                 }
             });
         }catch (URISyntaxException ue){
@@ -285,11 +279,11 @@ public class JsonStoreDataManager {
                     dismissToast(true);
                     allItemListFromAdapter.clear();
                     String response = wlResponse.getResponseText();
-                    Timber.d("****Successfully got data from LocalStoreAdapter\n"+response);
+                    Logger.getInstance("JsonStoreDataManager").debug("****Successfully got data from LocalStoreAdapter\n" + response);
                     JsonParser parser = new JsonParser();
                     JsonArray responseArray = parser.parse(response).getAsJsonArray();
                     for(JsonElement obj:responseArray){
-                        Timber.d("Item :: "+obj.toString());
+                        Logger.getInstance("JsonStoreDataManager").debug("Item :: " + obj.toString());
                         allItemListFromAdapter.add(new Item(obj.getAsJsonObject()));
                     }
                     syncAdapterDataToLocalStore();
@@ -299,8 +293,8 @@ public class JsonStoreDataManager {
                 @Override
                 public void onFailure(WLFailResponse wlFailResponse) {
                     dismissToast(false);
-                    Timber.d("****An error occurred while fetching all the items from LocalStore Adapter "
-                            +wlFailResponse.getErrorMsg());
+                    Logger.getInstance("JsonStoreDataManager").debug("****An error occurred while fetching all the items from LocalStore Adapter "
+                            + wlFailResponse.getErrorMsg());
                 }
             });
         } catch (URISyntaxException e) {

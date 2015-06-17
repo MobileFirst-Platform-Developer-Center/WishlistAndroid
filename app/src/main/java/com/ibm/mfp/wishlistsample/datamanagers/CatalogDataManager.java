@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.ibm.mfp.wishlistsample.Constants;
 import com.ibm.mfp.wishlistsample.models.Item;
+import com.worklight.common.Logger;
 import com.worklight.wlclient.api.WLFailResponse;
 import com.worklight.wlclient.api.WLResourceRequest;
 import com.worklight.wlclient.api.WLResponse;
@@ -21,7 +22,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
-import timber.log.Timber;
 
 /**
  * Created by chethan on 14/05/15.
@@ -74,7 +74,7 @@ public class CatalogDataManager implements Constants{
                 @Override
                 public void onSuccess(WLResponse wlResponse) {
                     showToast(true);
-                    Timber.d("Success" + wlResponse.getResponseJSON());
+                    Logger.getInstance("CatalogDataManager").debug("Success" + wlResponse.getResponseJSON());
                     try {
                         JSONObject jsonObject = new JSONObject(String.valueOf(wlResponse.getResponseJSON()));
                         JSONArray responseArr = new JSONArray(String.valueOf(jsonObject.getJSONObject("Envelope")
@@ -96,12 +96,12 @@ public class CatalogDataManager implements Constants{
                     }
 
                 EventBus.getDefault().post(itemArrayList);
-                    Timber.d("posted itemarraylist from catalog data manager");
+                    Logger.getInstance("CatalogDataManager").debug("posted itemarraylist from catalog data manager");
                 }
 
                 @Override
                 public void onFailure(WLFailResponse wlFailResponse) {
-                    Timber.d("Failure"+wlFailResponse.getResponseJSON());
+                    Logger.getInstance("CatalogDataManager").debug("Failure" + wlFailResponse.getResponseText());
                     showToast(false);
                 }
             });

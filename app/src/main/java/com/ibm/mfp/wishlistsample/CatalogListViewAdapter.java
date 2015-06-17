@@ -1,5 +1,6 @@
 package com.ibm.mfp.wishlistsample;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
-import timber.log.Timber;
 
 /**
  * Created by chethan on 15/05/15.
@@ -28,14 +28,14 @@ public class CatalogListViewAdapter extends BaseAdapter{
             this.itemList = items;
 
         EventBus.getDefault().register(this);
-        Timber.d("event bus register");
+        Log.d("ListViewAdapter","event bus register");
     }
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
         EventBus.getDefault().unregister(this);
-        Timber.d("event bus un - register");
+        Log.d("ListViewAdapter","event bus un - register");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class CatalogListViewAdapter extends BaseAdapter{
 
     //Event bus receives the catalog items list data in this method
     public   void onEventMainThread(ArrayList<Item> list){
-        Timber.d("Got catalog item list in Catalog Adapter " + list.size());
+        Log.d("ListViewAdapter", "Got catalog item list in Catalog Adapter " + list.size());
         for(Item item : list){
             item.prettyPrint();
         }

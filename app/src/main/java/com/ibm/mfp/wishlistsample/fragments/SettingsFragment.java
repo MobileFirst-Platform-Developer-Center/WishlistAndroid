@@ -3,6 +3,7 @@ package com.ibm.mfp.wishlistsample.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import me.alexrs.prefs.lib.Prefs;
-import timber.log.Timber;
 
 /**
  * Created by chethan on 19/05/15.
@@ -62,7 +62,7 @@ public class SettingsFragment extends Fragment implements Constants{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Timber.d("Settings Fragment onViewCreated");
+        Log.d("Settings fragment", "Settings Fragment onViewCreated");
 
         WLClient.createInstance(getActivity().getApplicationContext());
 

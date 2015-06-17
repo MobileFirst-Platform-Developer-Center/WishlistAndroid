@@ -2,31 +2,23 @@ package com.ibm.mfp.wishlistsample.datamanagers;
 
 import android.app.Activity;
 import android.content.Context;
-import android.widget.Toast;
-
-import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.toolkit.Store;
 import com.cloudant.toolkit.query.CloudantQuery;
 import com.cloudant.toolkit.query.Query;
 import com.ibm.imf.data.DataManager;
 import com.ibm.mfp.wishlistsample.Utils;
 import com.ibm.mfp.wishlistsample.models.Item;
-
+import com.worklight.common.Logger;
 import net.steamcrafted.loadtoast.LoadToast;
-
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
 import bolts.Continuation;
 import bolts.Task;
 import de.greenrobot.event.EventBus;
-import timber.log.Timber;
+
 
 /**
  * Created by chethan on 19/05/15.
@@ -60,7 +52,7 @@ public class WishListDataManager {
             toast.setTranslationY(400);
             toast.show();
             dataProxyURL  = Utils.getDataProxyUrl(context);
-            Timber.d("Data proxy url :: "+dataProxyURL);
+            Logger.getInstance("WishListDataManager").debug("Data proxy url :: " + dataProxyURL);
 
 
             DataManager.initialize(context, dataProxyURL);
@@ -70,11 +62,12 @@ public class WishListDataManager {
                 public Object then(Task<Store> task) throws Exception {
                     if (task.isFaulted()){
                         showToast(false);
-                        Timber.d("An error occurred while creating a remote store "+task.getError().getLocalizedMessage());
+
+                        Logger.getInstance("WishListDataManager").debug("An error occurred while creating a remote store " + task.getError().getLocalizedMessage());
                     }else{
                         Store store = task.getResult();
                         remoteDatastore = store;
-                        Timber.d("created remote store : " + store.getName());
+                        Logger.getInstance("WishListDataManager").debug("created remote store : " + store.getName());
                         remoteDatastore.getMapper().setDataTypeForClassName("Item", Item.class.getCanonicalName());
 
                         Task<Boolean> permissionTask = DataManager.getInstance()
@@ -85,10 +78,10 @@ public class WishListDataManager {
                             public Object then(Task<Boolean> task) throws Exception {
                                 if (task.isFaulted()){
                                     showToast(false);
-                                    Timber.d("An error occurred while setting permissions for remote data store"
-                                            +task.getError().getLocalizedMessage());
+                                    Logger.getInstance("WishListDataManager").debug("An error occurred while setting permissions for remote data store"
+                                            + task.getError().getLocalizedMessage());
                                 }else {
-                                    Timber.d("DB Permissions set for remote data store");
+                                    Logger.getInstance("WishListDataManager").debug("DB Permissions set for remote data store");
                                     getWishListItems();
                                 }
                                 return null;
@@ -128,7 +121,7 @@ public class WishListDataManager {
                 public Object then(Task<List> task) throws Exception {
                     if (task.isFaulted()){
                         showToast(false);
-                        Timber.d("An error occurred while retrieving all the items from remote store"+task.getError().getLocalizedMessage());
+                        Logger.getInstance("WishListDataManager").debug("An error occurred while retrieving all the items from remote store" + task.getError().getLocalizedMessage());
                     }else{
                         showToast(true);
 
@@ -136,7 +129,7 @@ public class WishListDataManager {
                         List itemsList = task.getResult();
                         for (Object item:itemsList){
                             if (item instanceof Item){
-                                Timber.d("The returned object  from List is Item");
+                                Logger.getInstance("WishListDataManager").debug("The returned object  from List is Item");
                                 ((Item) item).prettyPrint();
                                 itemList.add((Item) item);
                             }
@@ -158,11 +151,11 @@ public class WishListDataManager {
             public Object then(Task<Object> task) throws Exception {
                 if (task.isFaulted()){
                     showToast(false);
-                    Timber.d("An error occurred while saving item to remote store");
+                    Logger.getInstance("WishListDataManager").debug("An error occurred while saving item to remote store");
                 }else{
                     getWishListItems();
                     showToast(true);
-                    Timber.d("After successfully adding item to wishlist, refreshing the data from cloudant");
+                    Logger.getInstance("WishListDataManager").debug("After successfully adding item to wishlist, refreshing the data from cloudant");
                 }
                 return null;
             }

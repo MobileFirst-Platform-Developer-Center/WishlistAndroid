@@ -17,6 +17,7 @@ import com.ibm.mfp.wishlistsample.fragments.WishListFragment;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.worklight.common.Logger;
 import com.worklight.wlclient.WLRequestListener;
 import com.worklight.wlclient.api.WLClient;
 import com.worklight.wlclient.api.WLFailResponse;
@@ -26,7 +27,7 @@ import com.worklight.wlclient.api.WLResponseListener;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import timber.log.Timber;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.inject(this);
-        Timber.plant(new Timber.DebugTree());
+
         title.setTypeface(Utils.getRegularTypeface(this));
 
        drawer  = new Drawer()
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onFailure(WLFailResponse wlFailResponse) {
-                                        Timber.d("Couldn't log out "+wlFailResponse.getErrorMsg());
+                                        Logger.getInstance("MainActivity").debug("Couldn't log out " + wlFailResponse.getErrorMsg());
                                         toast("Couldn't  log out");
                                     }
                                 });
@@ -152,17 +153,17 @@ public class MainActivity extends AppCompatActivity {
         WLClient.getInstance().getPush().setOnReadyToSubscribeListener(new WLOnReadyToSubscribeListener() {
             @Override
             public void onReadyToSubscribe() {
-                Timber.d("onReadyToSubscribe");
+                Logger.getInstance("MainActivity").debug("onReadyToSubscribe");
                 //subscribe to a tag
                 WLClient.getInstance().getPush().subscribeTag("wishlist", null, new WLResponseListener() {
                     @Override
                     public void onSuccess(WLResponse wlResponse) {
-                        Timber.d("Successfully subscribed to push tag wishlist");
+                        Logger.getInstance("MainActivity").debug("Successfully subscribed to push tag wishlist");
                     }
 
                     @Override
                     public void onFailure(WLFailResponse wlFailResponse) {
-                        Timber.d("An error occured while subscribing to manager push tag");
+                        Logger.getInstance("MainActivity").debug("An error occured while subscribing to manager push tag");
                     }
                 });
             }
@@ -171,12 +172,12 @@ public class MainActivity extends AppCompatActivity {
         WLClient.getInstance().connect(new WLResponseListener() {
             @Override
             public void onSuccess(WLResponse wlResponse) {
-                Timber.d("Successfully connected \n"+wlResponse.getResponseJSON());
+                Logger.getInstance("MainActivity").debug("Successfully connected \n" + wlResponse.getResponseJSON());
             }
 
             @Override
             public void onFailure(WLFailResponse wlFailResponse) {
-                Timber.d("An error occured while connecting to server");
+                Logger.getInstance("MainActivity").debug("An error occured while connecting to server");
             }
         });
     }

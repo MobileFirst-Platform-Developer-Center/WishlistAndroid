@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.cloudant.toolkit.Store;
 import com.ibm.imf.data.DataManager;
@@ -27,7 +28,6 @@ import java.util.Properties;
 import bolts.Task;
 import de.greenrobot.event.EventBus;
 import me.alexrs.prefs.lib.Prefs;
-import timber.log.Timber;
 
 /**
  * Created by chethan on 20/05/15.
@@ -74,13 +74,13 @@ public class Utils implements Constants {
             client.get(url.toString(), new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Timber.d("is cloudant available - success  status code : "+statusCode + "Response "+responseBody.toString());
+                    Log.d("Utils","is cloudant available - success  status code : "+statusCode + "Response "+responseBody.toString());
                     EventBus.getDefault().post(true);
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    Timber.d("is cloudant available - failure  status code : "+statusCode);
+                    Log.d("Utils","is cloudant available - failure  status code : " + statusCode);
                     EventBus.getDefault().post(false);
                 }
             });

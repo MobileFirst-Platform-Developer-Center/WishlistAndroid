@@ -3,6 +3,7 @@ package com.ibm.mfp.wishlistsample.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import com.ibm.mfp.wishlistsample.R;
 import com.ibm.mfp.wishlistsample.Utils;
 import com.ibm.mfp.wishlistsample.datamanagers.CatalogDataManager;
 import com.worklight.wlclient.api.WLClient;
-import timber.log.Timber;
 
 /**
  * Created by chethan on 13/05/15.
@@ -38,7 +38,7 @@ public class CatalogFragment extends Fragment {
         Utils.setCustomServerURLs(getActivity().getApplicationContext());
 
         CatalogDataManager.getInstance(getActivity()).getCatalogData();
-        Timber.d("Catalog Fragment onViewCreated");
+        Log.d("Catalog Fragment", "Catalog Fragment onViewCreated");
 
         catalogListView = (ListView)view.findViewById(R.id.catalogListView);
         catalogListView.setAdapter(new CatalogListViewAdapter(null)); // optionally you can pass the items here
