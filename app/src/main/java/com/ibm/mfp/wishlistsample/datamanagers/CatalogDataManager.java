@@ -87,7 +87,7 @@ public class CatalogDataManager implements Constants{
                                     responseItem.getString(TITLE),
                                     responseItem.getString(STORE),
                                     responseItem.getInt(PRICE),
-                                    "http://boxstore-catalog.mybluemix.net/MFPSampleWebService"+responseItem.getString(PHOTO),
+                                    "https://dl.dropboxusercontent.com/u/97674776"+responseItem.getString(PHOTO),
                                     responseItem.getString(PRODUCT_ID)
                             ));
                        }

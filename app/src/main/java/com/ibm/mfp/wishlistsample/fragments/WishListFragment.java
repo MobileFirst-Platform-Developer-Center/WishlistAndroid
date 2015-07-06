@@ -47,7 +47,7 @@ public class WishListFragment extends Fragment {
 
     EditText itemName = null, storeName = null, itemPrice = null;
     ImageView itemImage = null;
-    String placeholderImageUrlString = "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/gs6edge.png";
+    String placeholderImageUrlString = "https://dl.dropboxusercontent.com/u/97674776/images/gs6edge.png";
 
     public static WishListFragment newInstance()
     {
@@ -168,15 +168,15 @@ public class WishListFragment extends Fragment {
         Log.d("WishListFragment","Random val" + val);
         switch (val){
             case 1:
-                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/iPadAir2.jpg";
+                return "https://dl.dropboxusercontent.com/u/97674776/images/iPadAir2.jpg";
             case 2:
-                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/gs6edge.png";
+                return "https://dl.dropboxusercontent.com/u/97674776/images/gs6edge.png";
             case 3:
-                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/samsung65tv.png";
+                return "https://dl.dropboxusercontent.com/u/97674776/images/samsung65tv.png";
             case 4:
-                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/macbook_pro.png";
+                return "https://dl.dropboxusercontent.com/u/97674776/images/macbook_pro.png";
             default:
-                return "http://boxstore-catalog.mybluemix.net/MFPSampleWebService/images/gs6edge.png";
+                return "https://dl.dropboxusercontent.com/u/97674776/images/gs6edge.png";
 
         }
 
