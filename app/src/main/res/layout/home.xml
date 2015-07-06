@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:background="@drawable/screen_bg"
      android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Catalog"
-        android:layout_marginLeft="20dp"
+        android:gravity="center"
         android:textSize="30sp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        fontPath="fonts/Lato-Regular.ttf"
+        android:background="#ffff"
+        fontPath="fonts/ProximaNova-Regular.otf"
         android:id="@+id/catalog" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:textSize="30sp"
         android:text="WishList"
-        android:layout_alignParentRight="true"
-        fontPath="fonts/Lato-Regular.ttf"
-        android:id="@+id/wishlist"
-        android:layout_centerVertical="true" />
-</RelativeLayout>
+        android:background="#9ba0b1"
+        fontPath="fonts/ProximaNova-Regular.otf"
+        android:id="@+id/wishlist" />
+</LinearLayout>

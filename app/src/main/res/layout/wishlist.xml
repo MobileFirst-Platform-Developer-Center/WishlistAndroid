@@ -24,9 +24,9 @@
     android:layout_alignParentBottom="true"
     android:layout_alignParentRight="true"
     android:layout_marginRight="20dp"
-    fab:fab_colorNormal="#ff106639"
+    fab:fab_colorNormal="#305FB1"
     fab:fab_title="add"
     fab:fab_icon="@drawable/ic_action_new"
-    fab:fab_colorPressed="#ff09421a"/>
+    fab:fab_colorPressed="#28478e"/>
 
 </RelativeLayout>

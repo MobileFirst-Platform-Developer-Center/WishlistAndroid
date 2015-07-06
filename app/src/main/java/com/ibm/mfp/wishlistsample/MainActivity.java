@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.inject(this);
 
-        title.setTypeface(Utils.getRegularTypeface(this));
+        title.setTypeface(Utils.getProximaTypeface(this));
 
        drawer  = new Drawer()
                 .withActivity(this)
@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
                 .withTranslucentStatusBar(true)
                 .withDisplayBelowToolbar(true)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Home").withTypeface(Utils.getRegularTypeface(this)),
+                        new PrimaryDrawerItem().withName("Home").withTypeface(Utils.getProximaTypeface(this)),
 
-                        new PrimaryDrawerItem().withName("Catalog").withTypeface(Utils.getRegularTypeface(this)),
-                        new PrimaryDrawerItem().withName("Wish List").withTypeface(Utils.getRegularTypeface(this)),
+                        new PrimaryDrawerItem().withName("Catalog").withTypeface(Utils.getProximaTypeface(this)),
+                        new PrimaryDrawerItem().withName("Wish List").withTypeface(Utils.getProximaTypeface(this)),
 
-                        new PrimaryDrawerItem().withName("Settings").withTypeface(Utils.getRegularTypeface(this)),
-                        new PrimaryDrawerItem().withName("Logout").withTypeface(Utils.getRegularTypeface(this))
+                        new PrimaryDrawerItem().withName("Settings").withTypeface(Utils.getProximaTypeface(this)),
+                        new PrimaryDrawerItem().withName("Logout").withTypeface(Utils.getProximaTypeface(this))
 
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         switch (position){
                             case 0:
                                 //home
-                                title.setText("WISHLIST");
+                                title.setText("Wishlist");
                                 fragmentManager.beginTransaction()
                                         .replace(R.id.container, HomeFragment.newInstance(drawer))
                                         .commit();

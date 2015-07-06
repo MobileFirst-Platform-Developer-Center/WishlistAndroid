@@ -120,4 +120,8 @@ public class Utils implements Constants {
         return Typeface.createFromAsset(context.getApplicationContext().getAssets(), "fonts/Lato-Regular.ttf");
     }
 
+    public static Typeface getProximaTypeface(Context context) {
+        return Typeface.createFromAsset(context.getApplicationContext().getAssets(), "fonts/ProximaNova-Regular.otf");
+    }
+
 }
