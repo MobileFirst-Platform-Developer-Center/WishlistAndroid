@@ -77,8 +77,7 @@ public class CatalogDataManager implements Constants{
                     Logger.getInstance("CatalogDataManager").debug("Success" + wlResponse.getResponseJSON());
                     try {
                         JSONObject jsonObject = new JSONObject(String.valueOf(wlResponse.getResponseJSON()));
-                        JSONArray responseArr = new JSONArray(String.valueOf(jsonObject.getJSONObject("Envelope")
-                                .getJSONObject("Body").get("getAllProductsDetailsReturn")));
+                        JSONArray responseArr = new JSONArray(String.valueOf(jsonObject.get("getAllProductsDetailsReturn")));
 
 
                        for(int i=0;i<responseArr.length();i++){
