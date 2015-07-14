@@ -2,6 +2,8 @@ package com.ibm.mfp.wishlistsample.datamanagers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
+
 import com.cloudant.toolkit.IndexField;
 import com.cloudant.toolkit.Store;
 import com.cloudant.toolkit.mapper.DataObjectMapper;
@@ -155,6 +157,7 @@ public class JsonStoreDataManager {
                             }
                             Logger.getInstance("JsonStoreDataManager").debug("Item list sending from jsonstore " + allItemListFromLocalStore.toString());
                             EventBus.getDefault().post(allItemListFromLocalStore);
+                            EventBus.getDefault().post("loadedItems");
                         }
                         return null;
                     }
@@ -295,6 +298,7 @@ public class JsonStoreDataManager {
                     dismissToast(false);
                     Logger.getInstance("JsonStoreDataManager").debug("****An error occurred while fetching all the items from LocalStore Adapter "
                             + wlFailResponse.getErrorMsg());
+                    Toast.makeText(context,"An error occurred while fetching the wish list",Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (URISyntaxException e) {

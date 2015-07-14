@@ -13,5 +13,5 @@ public interface Constants {
 
     public static final String USE_CUSTOM_SERVER = "useCustomServer";
     public static final String MFP_SERVER_URL = "mfpServerUrl";
-    public static final String MFP_DATAPROXY_URL = "mfpDataProxyUrl";
+    public static final String MFP_RUNTIME_NAME = "mfpServerRuntimeName";
 }

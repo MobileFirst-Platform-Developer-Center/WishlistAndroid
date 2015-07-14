@@ -8,18 +8,17 @@
    <RelativeLayout
             android:background="#305FB1"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="60dp"
             android:elevation="6dp">
        <!--@drawable/green_header-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:textColor="#a9ffffff"
-                android:textSize="30sp"
-                android:text="&#9776;"
+               android:src="@drawable/menuicon"
                 android:id="@+id/main_navigation"/>
 
            <TextView
@@ -29,7 +28,7 @@
                android:layout_marginBottom="10dp"
                android:layout_centerHorizontal="true"
                android:textColor="#a9ffffff"
-               android:textSize="40sp"
+               android:textSize="36sp"
                android:text="Wish List"
                android:id="@+id/main_title"/>
 

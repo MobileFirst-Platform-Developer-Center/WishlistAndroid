@@ -2,6 +2,7 @@ package com.ibm.mfp.wishlistsample.datamanagers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.ibm.mfp.wishlistsample.Constants;
 import com.ibm.mfp.wishlistsample.models.Item;
@@ -77,7 +78,7 @@ public class CatalogDataManager implements Constants{
                     Logger.getInstance("CatalogDataManager").debug("Success" + wlResponse.getResponseJSON());
                     try {
                         JSONObject jsonObject = new JSONObject(String.valueOf(wlResponse.getResponseJSON()));
-                        JSONArray responseArr = new JSONArray(String.valueOf(jsonObject.get("getAllProductsDetailsReturn")));
+                        JSONArray responseArr = new JSONArray(String.valueOf(((JSONObject)((JSONObject)jsonObject.get("Envelope")).get("Body")).get("getAllProductsDetailsReturn")));
 
 
                        for(int i=0;i<responseArr.length();i++){
@@ -95,13 +96,21 @@ public class CatalogDataManager implements Constants{
                     }
 
                 EventBus.getDefault().post(itemArrayList);
-                    Logger.getInstance("CatalogDataManager").debug("posted itemarraylist from catalog data manager");
+                Logger.getInstance("CatalogDataManager").debug("posted itemarraylist from catalog data manager");
+                EventBus.getDefault().post("loadedItems");
                 }
 
                 @Override
                 public void onFailure(WLFailResponse wlFailResponse) {
                     Logger.getInstance("CatalogDataManager").debug("Failure" + wlFailResponse.getResponseText());
                     showToast(false);
+                    ((Activity)context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(context,"Could not connect to MFP server",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
             });
         }

@@ -5,45 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Switch
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Use custom server"
-        android:textSize="17sp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:id="@+id/custom_server_switch"
-        android:layout_gravity="center_horizontal"
-        android:showText="false"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Provide your server details"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         fontPath="fonts/Lato-Regular.ttf"
-        android:textColor="#81000000"
-        android:checked="true" />
+        android:textColor="#484649"
+        android:id="@+id/settings_text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Provide the ip and port of the MFP console"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/settings_text"
+        fontPath="fonts/Lato-Regular.ttf"
+        android:textColor="#747275"
+        android:id="@+id/settings_ip_text"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@id/custom_server_switch"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/settings_ip_text"
         fontPath="fonts/Lato-Regular.ttf"
-        android:hint="http://host:port/context"
-        android:text="http://129.41.233.140:9080/wishlist"
+        android:hint="http://host:port"
+        android:text="http://129.41.233.140:9080"
         android:id="@+id/settings_mfp_url"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Provide the runtime name of the MFP project"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/settings_mfp_url"
+        fontPath="fonts/Lato-Regular.ttf"
+        android:textColor="#747275"
+        android:id="@+id/settings_context_text"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/settings_mfp_url"
         fontPath="fonts/Lato-Regular.ttf"
-        android:hint="http://host:port/imfdata"
-        android:text="http://129.41.233.140:9080/imfdata"
-        android:id="@+id/settings_dataproxy_url"/>
+        android:layout_below="@id/settings_context_text"
+        android:hint="MobileFirstStarter"
+        android:text="MobileFirstStarter"
+        android:id="@+id/settings_mfp_runtime"/>
+
 
     <Button
         android:layout_width="wrap_content"
@@ -53,7 +73,7 @@
         android:layout_alignParentRight="true"
         fontPath="fonts/Lato-Regular.ttf"
         android:layout_marginRight="20dp"
-        android:layout_below="@id/settings_dataproxy_url"
+        android:layout_below="@id/settings_mfp_runtime"
         android:id="@+id/settings_save"/>
 
 

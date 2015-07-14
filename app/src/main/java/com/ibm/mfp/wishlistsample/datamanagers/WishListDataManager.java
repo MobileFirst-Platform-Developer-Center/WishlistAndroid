@@ -135,6 +135,7 @@ public class WishListDataManager {
                             }
                         }
                         EventBus.getDefault().post(itemList);
+                        EventBus.getDefault().post("loadedItems");
                     }
                     return null;
                 }

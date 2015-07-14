@@ -79,7 +79,7 @@ public class WishListFragment extends Fragment {
 
         if (Utils.isOnline(getActivity())){
             Utils.pingCloudant(getActivity());
-            toast.setText("Cloudant or local");
+            toast.setText("Connecting....");
             toast.show();
         }else{
             usingCloudant = false;
@@ -145,15 +145,22 @@ public class WishListFragment extends Fragment {
         if (isCloudantAvailable){
             toast.success();
             WishListDataManager.getInstance(getActivity()).setUpDB();
+            Toast.makeText(getActivity(),"Server is configured with a Cloudant instance",Toast.LENGTH_SHORT).show();
             usingCloudant = true;
         }else{
             toast.error();
             usingCloudant = false;
             JsonStoreDataManager.getInstance(getActivity()).setUpLocalStore();
-//            JsonStoreDataManager.getInstance(getActivity()).getLocalListItems();
         }
         //enable the add new item button
-        add.setEnabled(true);
+        //add.setEnabled(true);
+    }
+
+    public void onEventMainThread(String loaded){
+        Log.d("WishListFragment","Is the list loaded "+ loaded);
+        if(loaded.equalsIgnoreCase("loadedItems")){
+            add.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

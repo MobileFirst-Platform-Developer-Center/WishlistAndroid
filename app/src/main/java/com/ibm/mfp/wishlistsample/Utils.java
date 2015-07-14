@@ -36,9 +36,9 @@ public class Utils implements Constants {
 
     public static void setCustomServerURLs(Context context){
         try {
-            if (Prefs.with(context).getBoolean(USE_CUSTOM_SERVER,false)) {
-                WLClient.getInstance().setServerUrl(new URL(Prefs.with(context).getString(MFP_SERVER_URL, "")));
-            }
+
+                WLClient.getInstance().setServerUrl(new URL(Prefs.with(context).getString(MFP_SERVER_URL, "")+"/"+Prefs.with(context).getString(MFP_RUNTIME_NAME, "")));
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -46,13 +46,7 @@ public class Utils implements Constants {
 
     public static URL getDataProxyUrl(Context context){
         try {
-            if (Prefs.with(context).getBoolean(USE_CUSTOM_SERVER,false)){
-                if (Prefs.with(context).getString(MFP_DATAPROXY_URL,"").equalsIgnoreCase(""))
-                    return new URL(getCloudantUrlFromProperties(context));
-                else
-                    return new URL(Prefs.with(context).getString(MFP_DATAPROXY_URL,""));
-            }
-            return new URL(getCloudantUrlFromProperties(context));
+            return new URL(Prefs.with(context).getString(MFP_SERVER_URL, "")+"/"+"datastore");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -71,19 +65,23 @@ public class Utils implements Constants {
     public static void pingCloudant(Context context) {
             URL url = getDataProxyUrl(context);
             AsyncHttpClient client = new AsyncHttpClient();
-            client.get(url.toString(), new AsyncHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Log.d("Utils","is cloudant available - success  status code : "+statusCode + "Response "+responseBody.toString());
-                    EventBus.getDefault().post(true);
-                }
+            if (url != null) {
+                client.get(url.toString(), new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        Log.d("Utils", "is cloudant available - success  status code : " + statusCode + "Response " + responseBody.toString());
+                        EventBus.getDefault().post(true);
+                    }
 
-                @Override
-                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                    Log.d("Utils","is cloudant available - failure  status code : " + statusCode);
-                    EventBus.getDefault().post(false);
-                }
-            });
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        Log.d("Utils", "is cloudant available - failure  status code : " + statusCode);
+                        EventBus.getDefault().post(false);
+                    }
+                });
+            }else{
+                EventBus.getDefault().post(false);
+            }
     }
 
     public static String getCloudantUrlFromProperties(Context context){

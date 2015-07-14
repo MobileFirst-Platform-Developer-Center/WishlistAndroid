@@ -38,11 +38,8 @@ public class SettingsFragment extends Fragment implements Constants{
     @InjectView(R.id.settings_mfp_url)
     EditText mfpURL ;
 
-    @InjectView(R.id.settings_dataproxy_url)
-    EditText dataproxyURL;
-
-    @InjectView(R.id.custom_server_switch)
-    Switch customServerSwitch;
+    @InjectView(R.id.settings_mfp_runtime)
+    EditText mfpRuntimeName;
 
     @InjectView(R.id.settings_save)
     Button save;
@@ -66,47 +63,22 @@ public class SettingsFragment extends Fragment implements Constants{
 
         WLClient.createInstance(getActivity().getApplicationContext());
 
-        Boolean shouldUseCustomServer = Prefs.with(getActivity().getApplicationContext()).getBoolean(USE_CUSTOM_SERVER, false);
-        customServerSwitch.setChecked(shouldUseCustomServer);
-
         mfpURL.setText(Prefs.with(getActivity().getApplicationContext()).getString(MFP_SERVER_URL, ""));
-        dataproxyURL.setText(Prefs.with(getActivity().getApplicationContext()).getString(MFP_DATAPROXY_URL, ""));
-
-        customServerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(getActivity(), "server url " + WLClient.getInstance().getServerUrl(), Toast.LENGTH_SHORT).show();
-                mfpURL.setEnabled(isChecked);
-                dataproxyURL.setEnabled(isChecked);
-                save.setEnabled(isChecked);
-                if (isChecked){
-                    clickSave();
-                }else{
-                    try {
-                        WLClient.getInstance().setServerUrl(new URL(Utils.getMFPUrlFromProperties(getActivity())));
-                        Prefs.with(getActivity().getApplicationContext()).save(USE_CUSTOM_SERVER,isChecked);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
+        mfpRuntimeName.setText(Prefs.with(getActivity().getApplicationContext()).getString(MFP_RUNTIME_NAME,""));
 
 
     }
 
     @OnClick(R.id.settings_save)
     public void clickSave(){
-        Prefs.with(getActivity().getApplicationContext()).save(USE_CUSTOM_SERVER,customServerSwitch.isChecked());
-        if(customServerSwitch.isChecked()){
-            Prefs.with(getActivity().getApplicationContext()).save(MFP_SERVER_URL,mfpURL.getText().toString());
-            Prefs.with(getActivity().getApplicationContext()).save(MFP_DATAPROXY_URL,dataproxyURL.getText().toString());
+        Prefs.with(getActivity().getApplicationContext()).save(MFP_SERVER_URL,mfpURL.getText().toString());
+        Prefs.with(getActivity().getApplicationContext()).save(MFP_RUNTIME_NAME,mfpRuntimeName.getText().toString());
             try {
-                WLClient.getInstance().setServerUrl(new URL(mfpURL.getText().toString()));
+                WLClient.getInstance().setServerUrl(new URL(mfpURL.getText().toString()+"/"+mfpRuntimeName.getText().toString()));
                 Toast.makeText(getActivity(),"Successfully saved the custom server properties",Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-        }
+
     }
 }

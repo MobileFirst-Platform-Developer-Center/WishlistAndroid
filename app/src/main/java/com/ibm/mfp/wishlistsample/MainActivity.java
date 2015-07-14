@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Drawer.Result drawer;
 
     @InjectView(R.id.main_navigation)
-    TextView navigation;
+    ImageView navigation;
 
     @InjectView(R.id.main_title)
     TextView title;
