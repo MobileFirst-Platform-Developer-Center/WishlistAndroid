@@ -1,17 +1,18 @@
-This README.md file is displayed on your project page. You should edit this 
-file to describe your project, including instructions for building and 
-running the project, pointers to the license under which you are making the 
-project available, and anything else you think would be useful for others to
-know.
+#Wishlist Android app
+This is a companion android app source code for the IBM MobileFirst starter image thats available on bluemix.net container service.
+#Getting Started
+- Go to bluemix.net and create a account/sign in.
+- Create a new "IBM Container" by selecting "Start Containers"
+- Pick the mfp-foundation-getting-started image
+- Provide the following settings
+ - Plan: Medium (2 GB)
+ - Public IP Address: REquest and Bind a public IP / pick a existing one
+ - Ports: 80,9080
 
-We have created an empty license.txt file for you. Well, actually, it says,
-"<Replace this text with the license you've chosen for your project.>" We 
-recommend you edit this and include text for license terms under which you're
-making your code available. A good resource for open source licenses is the 
-[Open Source Initiative](http://opensource.org/).
+Then navigate to the public IP address in a browser and complete the registration process
+After this follow the build instructions
 
-Be sure to update your project's profile with a short description and 
-eye-catching graphic.
-
-Finally, consider defining some sprints and work items in Track & Plan to give 
-interested developers a sense of your cadence and upcoming enhancements.
+#Build Instructions
+Downolad the project as a zip file and open it in Android Studio.
+#License
+see License.txt
