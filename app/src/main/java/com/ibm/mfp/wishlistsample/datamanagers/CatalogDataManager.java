@@ -27,24 +27,24 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by chethan on 14/05/15.
  */
-public class CatalogDataManager implements Constants{
+public class CatalogDataManager implements Constants {
 
     private static CatalogDataManager catalogDataManager = null;
     LoadToast toast;
     Context context;
 
-    public static CatalogDataManager getInstance(Context context){
-        if (catalogDataManager==null){
+    public static CatalogDataManager getInstance(Context context) {
+        if (catalogDataManager == null) {
             catalogDataManager = new CatalogDataManager(context);
         }
-            return catalogDataManager;
+        return catalogDataManager;
     }
 
-    private CatalogDataManager(){
+    private CatalogDataManager() {
 
     }
 
-    private CatalogDataManager(Context context){
+    private CatalogDataManager(Context context) {
         this.context = context;
         toast = new LoadToast(context);
     }
@@ -54,7 +54,7 @@ public class CatalogDataManager implements Constants{
         super.finalize();
     }
 
-    public ArrayList<Item> getCatalogData(){
+    public ArrayList<Item> getCatalogData() {
         final ArrayList<Item> itemArrayList = new ArrayList<Item>();
         String adapterName = "CatalogAdapter";
         String procedureName = "getCatalog";
@@ -62,7 +62,7 @@ public class CatalogDataManager implements Constants{
         WLResourceRequest resourceRequest = null;
         try {
             resourceRequest = new WLResourceRequest(
-                    new URI("adapters/"+adapterName+"/"+procedureName),WLResourceRequest.GET);
+                    new URI("adapters/" + adapterName + "/" + procedureName), WLResourceRequest.GET);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -78,36 +78,39 @@ public class CatalogDataManager implements Constants{
                     Logger.getInstance("CatalogDataManager").debug("Success" + wlResponse.getResponseJSON());
                     try {
                         JSONObject jsonObject = new JSONObject(String.valueOf(wlResponse.getResponseJSON()));
-                        JSONArray responseArr = new JSONArray(String.valueOf(((JSONObject)((JSONObject)jsonObject.get("Envelope")).get("Body")).get("getAllProductsDetailsReturn")));
+                        JSONArray responseArr = new JSONArray(String.valueOf(
+                                jsonObject.get("getAllProductsDetailsReturn")));
 
 
-                       for(int i=0;i<responseArr.length();i++){
-                           JSONObject responseItem = responseArr.getJSONObject(i);
+                        for (int i = 0; i < responseArr.length(); i++) {
+                            JSONObject responseItem = responseArr.getJSONObject(i);
                             itemArrayList.add(new Item(
                                     responseItem.getString(TITLE),
                                     responseItem.getString(STORE),
                                     responseItem.getInt(PRICE),
-                                    "https://dl.dropboxusercontent.com/u/97674776"+responseItem.getString(PHOTO),
+                                    "https://dl.dropboxusercontent.com/u/97674776" +
+                                            responseItem.getString(PHOTO),
                                     responseItem.getString(PRODUCT_ID)
                             ));
-                       }
-                } catch (JSONException e) {
+                        }
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                EventBus.getDefault().post(itemArrayList);
-                Logger.getInstance("CatalogDataManager").debug("posted itemarraylist from catalog data manager");
-                EventBus.getDefault().post("loadedItems");
+                    EventBus.getDefault().post(itemArrayList);
+                    Logger.getInstance("CatalogDataManager").debug("posted itemarraylist from catalog data manager");
+                    EventBus.getDefault().post("loadedItems");
                 }
 
                 @Override
                 public void onFailure(WLFailResponse wlFailResponse) {
-                    Logger.getInstance("CatalogDataManager").debug("Failure" + wlFailResponse.getResponseText());
+                    Logger.getInstance("CatalogDataManager").debug("Failure" +
+                            wlFailResponse.getResponseText());
                     showToast(false);
-                    ((Activity)context).runOnUiThread(new Runnable() {
+                    ((Activity) context).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(context,"Could not connect to MFP server",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Could not connect to MFP server", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -118,8 +121,8 @@ public class CatalogDataManager implements Constants{
         return null;
     }
 
-    private void showToast(final Boolean isSuccess){
-        ((Activity)context).runOnUiThread(new Runnable() {
+    private void showToast(final Boolean isSuccess) {
+        ((Activity) context).runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (isSuccess)
