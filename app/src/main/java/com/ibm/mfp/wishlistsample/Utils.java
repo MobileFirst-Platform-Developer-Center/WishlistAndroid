@@ -61,29 +61,7 @@ public class Utils implements Constants {
         }
         return ni.isConnected();
     }
-
-    public static void pingCloudant(Context context) {
-            URL url = getDataProxyUrl(context);
-            AsyncHttpClient client = new AsyncHttpClient();
-            if (url != null) {
-                client.get(url.toString(), new AsyncHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                        Log.d("Utils", "is cloudant available - success  status code : " + statusCode + "Response " + responseBody.toString());
-                        EventBus.getDefault().post(true);
-                    }
-
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                        Log.d("Utils", "is cloudant available - failure  status code : " + statusCode);
-                        EventBus.getDefault().post(false);
-                    }
-                });
-            }else{
-                EventBus.getDefault().post(false);
-            }
-    }
-
+    
     public static String getCloudantUrlFromProperties(Context context){
         try {
             Properties prop = new Properties();
