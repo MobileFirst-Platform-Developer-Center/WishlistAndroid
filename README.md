@@ -5,7 +5,7 @@ IBM MobileFirst Platform Foundation
 
 Its a sample App that is shipped as part of Mobile First Docker Starter Image.
 
-Some of the main functionalities that is excercised in the sample are :
+Some of the main functionalities that is exercised in the sample are :
 
 -	Java and JavaScript adapter invocation via REST urls
 -	Couldant db creation and access via data proxy
@@ -19,7 +19,7 @@ Follow the instructions in the tutorial(s) listed below.
 
 ### Tutorials
 
-https://developer.ibm.com/mobilefirstplatform/documentation/getting-started-7-1/bluemix/
+https://developer.ibm.com/mobilefirstplatform/documentation/getting-started-7-1/bluemix/foundation-on-bluemix-sample-app/
 
 ### Supported Levels
 

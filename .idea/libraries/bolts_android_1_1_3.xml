@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bolts-android-1.1.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.3/e61e3dfc57eaa5c97f9e7061db5608fc7d02d39e/bolts-android-1.1.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.3/3fb3e0cf59442d649a4d3a5993b9e7534ff6ba35/bolts-android-1.1.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

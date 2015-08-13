@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="uicandroid">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/src/main/jniLibs/uicandroid.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
