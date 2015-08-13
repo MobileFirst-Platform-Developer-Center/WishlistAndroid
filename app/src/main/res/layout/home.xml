@@ -20,25 +20,58 @@ limitations under the License.
      android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Catalog"
-        android:gravity="center"
-        android:textSize="30sp"
         android:background="#ffff"
-        fontPath="fonts/ProximaNova-Regular.otf"
-        android:id="@+id/catalog" />
+        android:id="@+id/catalog">
 
-    <TextView
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
+            android:layout_centerInParent="true"
+            android:src="@drawable/catalog_icon"
+            android:id="@+id/home_catalog"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Catalog"
+            android:layout_marginTop="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/home_catalog"
+            android:textSize="30sp"
+            fontPath="fonts/ProximaNova-Regular.otf"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="WishList"
         android:background="#9ba0b1"
-        fontPath="fonts/ProximaNova-Regular.otf"
-        android:id="@+id/wishlist" />
+        android:id="@+id/wishlist">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
+            android:layout_centerInParent="true"
+            android:src="@drawable/wishlist_icon"
+            android:id="@+id/home_wishlist"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/home_wishlist"
+            android:textSize="30sp"
+            android:text="WishList"
+            android:background="#9ba0b1"
+            fontPath="fonts/ProximaNova-Regular.otf" />
+
+    </RelativeLayout>
+
 </LinearLayout>
