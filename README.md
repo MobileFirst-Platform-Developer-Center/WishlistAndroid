@@ -1,18 +1,36 @@
-#Wishlist Android app
-This is a companion android app source code for the IBM MobileFirst starter image thats available on bluemix.net container service.
-#Getting Started
-- Go to bluemix.net and create a account/sign in.
-- Create a new "IBM Container" by selecting "Start Containers"
-- Pick the mfp-foundation-getting-started image
-- Provide the following settings
- - Plan: Medium (2 GB)
- - Public IP Address: REquest and Bind a public IP / pick a existing one
- - Ports: 80,9080
+IBM MobileFirst Platform Foundation
+===================================
 
-Then navigate to the public IP address in a browser and complete the registration process
-After this follow the build instructions
+### WishList for Android native
 
-#Build Instructions
-Downolad the project as a zip file and open it in Android Studio.
-#License
-see License.txt
+Its a sample App that is shipped as part of Mobile First Docker Starter Image.
+
+Some of the main functionalities that is excercised in the sample are :
+
+-	Java and JavaScript adapter invocation via REST urls
+-	Couldant db creation and access via data proxy
+-	Local JSON storage
+
+### Usage
+
+Follow the instructions in the tutorial(s) listed below.
+
+> For the App itself, Open it in Android Studio(point to the folder) and run it.
+
+### Tutorials
+
+https://developer.ibm.com/mobilefirstplatform/documentation/getting-started-7-1/bluemix/
+
+### Supported Levels
+
+IBM MobileFirst Platform Foundation 7.1
+
+### License
+
+Copyright 2015 IBM Corp.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
