@@ -5,6 +5,8 @@
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/me.alexrs/prefs/1.0.3/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/me.alexrs/prefs/1.0.3/2b9c0256a3aefff3f478f48f5c3be649d5ea1e42/prefs-1.0.3-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

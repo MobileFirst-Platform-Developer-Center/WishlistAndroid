@@ -76,7 +76,7 @@ public class SettingsFragment extends Fragment implements Constants{
         WLClient.createInstance(getActivity().getApplicationContext());
 
         mfpURL.setText(Prefs.with(getActivity().getApplicationContext()).getString(MFP_SERVER_URL, ""));
-        mfpRuntimeName.setText(Prefs.with(getActivity().getApplicationContext()).getString(MFP_RUNTIME_NAME,""));
+        mfpRuntimeName.setText(Prefs.with(getActivity().getApplicationContext()).getString(MFP_RUNTIME_NAME,"MobileFirstStarter"));
 
 
     }
