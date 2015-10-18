@@ -5,6 +5,8 @@
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.mikepenz.materialdrawer/library/2.9.5/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz.materialdrawer/library/2.9.5/1f22c81482327712fcab83edac4229991679acd5/library-2.9.5-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

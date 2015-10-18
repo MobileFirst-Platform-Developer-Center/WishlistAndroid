@@ -5,6 +5,8 @@
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.mikepenz.iconics/library/0.9.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mikepenz.iconics/library/0.9.1/f6b23a19a12b3f5f153247d109f0439f3efc6de/library-0.9.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
